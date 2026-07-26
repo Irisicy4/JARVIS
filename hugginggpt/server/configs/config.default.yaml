@@ -1,6 +1,6 @@
 openai: 
   api_key: sk-cAqgkOUHZNSWe0Lmvdpzk5vS8b6TQjjHZqdrjclHpCFNcVpG
-  base_url: http://128.241.246.246:3000
+  base_url: http://localhost:8001
 # azure:
 #   api_key: REPLACE_WITH_YOUR_AZURE_API_KEY_HERE
 #   base_url: REPLACE_WITH_YOUR_ENDPOINT_HERE
@@ -28,6 +28,10 @@ local_inference_endpoint:
 bbox_xyxy: false
 bbox_xywh: false
 bbox_separate: false
+# det_encoding controls how object-detection results are fed to the LLM.
+# Options: image_only | image_and_text | text_only
+# Unset (null) = legacy behaviour governed by bbox_xyxy / bbox_xywh / bbox_separate above.
+det_encoding: null
 multi_round:
   enabled: false
   max_rounds: 3

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "Depth_1881",
+    "task": "Depth",
+    "ground_truth": "A",
+    "input": "Given the image(s): CVBench/3D/000443.png\n\nWhich object is closer to the camera taking this photo, the trailer (highlighted by a red box) or the car (highlighted by a blue box)?\nSelect from the following choices:\n(A) trailer\n(B) car\n",
+    "response": {
+      "error": "Invalid \\escape: line 8 column 1351 (char 1673)"
+    }
+  }
+]

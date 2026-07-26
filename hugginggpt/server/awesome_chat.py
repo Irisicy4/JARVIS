@@ -337,9 +337,9 @@ def fix_dep(tasks):
         task["dep"] = []
         for k, v in args.items():
             if "<GENERATED>" in v:
-                dep_task_id = int(v.split("-")[1])
-                if dep_task_id not in task["dep"]:
-                    task["dep"].append(dep_task_id)
+                for dep_task_id in [int(m) for m in re.findall(r'<GENERATED>-(\d+)', v)]:
+                    if dep_task_id not in task["dep"]:
+                        task["dep"].append(dep_task_id)
         if len(task["dep"]) == 0:
             task["dep"] = [-1]
     return tasks
@@ -350,14 +350,13 @@ def unfold(tasks):
         for task in tasks:
             for key, value in task["args"].items():
                 if "<GENERATED>" in value:
-                    generated_items = value.split(",")
-                    if len(generated_items) > 1:
+                    dep_ids = [int(m) for m in re.findall(r'<GENERATED>-(\d+)', value)]
+                    if len(dep_ids) > 1:
                         flag_unfold_task = True
-                        for item in generated_items:
+                        for dep_id in dep_ids:
                             new_task = copy.deepcopy(task)
-                            dep_task_id = int(item.split("-")[1])
-                            new_task["dep"] = [dep_task_id]
-                            new_task["args"][key] = item
+                            new_task["dep"] = [dep_id]
+                            new_task["args"][key] = f"<GENERATED>-{dep_id}"
                             tasks.append(new_task)
                         tasks.remove(task)
     except Exception as e:
@@ -662,21 +661,49 @@ def local_model_inference(model_id, data, task):
         if "error" in predicted:
             return predicted
         image = load_image(img_url)
-        draw = ImageDraw.Draw(image)
-        labels = list(item['label'] for item in predicted)
-        color_map = {}
-        for label in labels:
-            if label not in color_map:
-                color_map[label] = (random.randint(0, 255), random.randint(0, 100), random.randint(0, 255))
-        for label in predicted:
-            box = label["box"]
-            draw.rectangle(((box["xmin"], box["ymin"]), (box["xmax"], box["ymax"])), outline=color_map[label["label"]], width=2)
-            draw.text((box["xmin"]+5, box["ymin"]-15), label["label"], fill=color_map[label["label"]])
-        name = str(uuid.uuid4())[:4]
-        image.save(f"public/images/{name}.jpg")
-        results = {}
-        results["generated image"] = f"/images/{name}.jpg"
-        results["predicted"] = predicted
+        W, H = image.size
+
+        det_encoding = config.get("det_encoding", None)  # None = legacy behaviour
+        results = {"predicted": predicted}
+
+        if det_encoding in ("image_only", "image_and_text") or det_encoding is None:
+            # Draw coloured bboxes on the original image
+            draw = ImageDraw.Draw(image)
+            color_map = {}
+            for item in predicted:
+                lbl = item["label"]
+                if lbl not in color_map:
+                    color_map[lbl] = (random.randint(0, 255), random.randint(0, 100), random.randint(0, 255))
+            for item in predicted:
+                box = item["box"]
+                draw.rectangle(
+                    ((box["xmin"], box["ymin"]), (box["xmax"], box["ymax"])),
+                    outline=color_map[item["label"]], width=2,
+                )
+                draw.text((box["xmin"] + 5, box["ymin"] - 15), item["label"], fill=color_map[item["label"]])
+            name = str(uuid.uuid4())[:4]
+            image.save(f"public/images/{name}.jpg")
+            results["generated image"] = f"/images/{name}.jpg"
+
+        if det_encoding in ("image_and_text", "text_only"):
+            # Build normalized [0,1] xyxy JSON description
+            normalized = [
+                {
+                    "label": item["label"],
+                    "bbox": [
+                        round(item["box"]["xmin"] / W, 4),
+                        round(item["box"]["ymin"] / H, 4),
+                        round(item["box"]["xmax"] / W, 4),
+                        round(item["box"]["ymax"] / H, 4),
+                    ],
+                }
+                for item in predicted
+            ]
+            results["description"] = f"Detected objects: {json.dumps(normalized, ensure_ascii=False)}"
+
+        if det_encoding is not None:
+            results["_det_encoding"] = det_encoding
+
         return results
     if task in ["image-classification", "image-to-text", "document-question-answering", "visual-question-answering"]:
         img_url = data["image"]
@@ -1052,7 +1079,11 @@ def summarize_round_results(results):
             for key in ["generated image", "generated audio", "generated text", "generated video", "response", "answer"]:
                 if key in inference:
                     outputs.append(f"{key}: {inference[key]}")
-            if (config.get("bbox_xyxy", False) or config.get("bbox_xywh", False)) and "predicted" in inference:
+            # det_encoding strategies: use description field when present
+            if "description" in inference:
+                outputs.append(f"description: {inference['description']}")
+            # Legacy bbox text output (only when det_encoding is not active)
+            elif (config.get("bbox_xyxy", False) or config.get("bbox_xywh", False)) and "predicted" in inference:
                 predicted = inference["predicted"]
                 if config.get("bbox_xywh", False) and isinstance(predicted, list):
                     predicted = _convert_predicted_to_xywh(predicted)
@@ -1075,47 +1106,75 @@ def summarize_round_results(results):
     return "\n".join(summaries)
 
 
-def collect_artifact_paths(results):
-    """Gather paths of generated images, audio, text, video from all results."""
-    artifacts = {}
+def _encode_image_to_data_url(img_path: str):
+    """Convert a /images/xxx.jpg result path to a base64 data URL, or None on failure."""
+    local_path = ("public" + img_path) if img_path.startswith("/images/") else img_path
+    try:
+        with open(local_path, "rb") as f:
+            data = f.read()
+        ext = local_path.rsplit(".", 1)[-1].lower()
+        mime = "image/png" if ext == "png" else "image/jpeg"
+        b64 = base64.b64encode(data).decode("utf-8")
+        return f"data:{mime};base64,{b64}"
+    except Exception:
+        return None
+
+
+def build_reflection_prompt(response, results, round_num, max_rounds):
+    """Build a multimodal reflection prompt (content list) with raw tool results and inline images."""
+    # Build the text portion with all non-image fields
+    text_parts = [
+        f"Your previous answer (round {round_num + 1}/{max_rounds}):",
+        response,
+        "",
+        "Here are the raw inference results from each task:",
+    ]
+    for task_id, result in sorted(results.items(), key=lambda x: x[0]):
+        task_type = result.get("task", {}).get("task", "unknown")
+        inference = result.get("inference result", {})
+        model_info = result.get("choose model result", {})
+        model_id = model_info.get("id", "unknown") if isinstance(model_info, dict) else "unknown"
+        text_parts.append(f"\nTask {task_id} ({task_type}, model: {model_id}):")
+        if isinstance(inference, dict):
+            # When det_encoding is active, skip raw 'predicted' (covered by 'description')
+            # and the internal '_det_encoding' marker.
+            det_enc = inference.get("_det_encoding")
+            skip_keys = {"generated image", "bbox_separate_image", "_det_encoding"}
+            if det_enc is not None:
+                skip_keys.add("predicted")
+            for key, val in inference.items():
+                if key not in skip_keys:
+                    text_parts.append(f"  {key}: {str(val)[:300]}")
+        elif isinstance(inference, list):
+            text_parts.append(f"  result: {json.dumps(inference[:3])}")
+        else:
+            text_parts.append(f"  result: {str(inference)[:300]}")
+
+    text_parts.extend([
+        "",
+        f"You are now in round {round_num + 2}/{max_rounds}.",
+        "Review your previous answer and the raw inference results above.",
+        "If you are confident the answer is correct, output an empty task list: [].",
+        "Otherwise, plan new or refined tasks to improve the answer.",
+        "Focus on what was wrong or incomplete.",
+        "Output ONLY the JSON task list.",
+    ])
+
+    content = [{"type": "text", "text": "\n".join(text_parts)}]
+
+    # Append any generated images inline so the VLM can see them directly
     for task_id, result in sorted(results.items(), key=lambda x: x[0]):
         inference = result.get("inference result", {})
         if not isinstance(inference, dict):
             continue
-        for key in ["generated image", "generated audio", "generated text", "generated video", "bbox_separate_image"]:
-            if key in inference:
-                label = f"task_{task_id}_{key.replace(' ', '_')}"
-                artifacts[label] = inference[key]
-    return artifacts
+        for img_key in ("generated image", "bbox_separate_image"):
+            if img_key in inference:
+                data_url = _encode_image_to_data_url(inference[img_key])
+                if data_url:
+                    content.append({"type": "text", "text": f"[task {task_id} — {img_key}]"})
+                    content.append({"type": "image_url", "image_url": {"url": data_url}})
 
-
-def build_reflection_prompt(response, result_summary, artifacts, round_num, max_rounds):
-    """Build the reflection prompt for the next round."""
-    parts = [
-        f"Your previous answer (round {round_num + 1}/{max_rounds}):",
-        response,
-        "",
-        "Summary of inference results:",
-        result_summary,
-    ]
-
-    if artifacts:
-        parts.append("")
-        parts.append("Generated artifacts available for use:")
-        for label, path in artifacts.items():
-            parts.append(f"  - {label}: {path}")
-
-    parts.extend([
-        "",
-        f"You are now in round {round_num + 2}/{max_rounds}. "
-        "Review your previous answer and the inference results above. "
-        "If you are confident the answer is correct, output an empty task list: []. "
-        "Otherwise, plan new or refined tasks to improve the answer. "
-        "Focus on what was wrong or incomplete. "
-        "Output ONLY the JSON task list.",
-    ])
-
-    return "\n".join(parts)
+    return content
 
 
 def offset_tasks(tasks, offset):
@@ -1285,16 +1344,13 @@ def chat_huggingface(messages, api_key, api_type, api_endpoint, return_planning 
             break
 
         # Prepare reflection prompt for next round
-        result_summary = summarize_round_results(new_results)
-        artifact_info = collect_artifact_paths(all_round_results)
-        reflection = build_reflection_prompt(response, result_summary, artifact_info, round_num, max_rounds)
+        reflection = build_reflection_prompt(response, new_results, round_num, max_rounds)
 
         # Build messages for next round: original context + assistant response + reflection as user
         context = messages[:-1] + [
             {"role": "assistant", "content": response},
             {"role": "user", "content": reflection},
         ]
-        current_input = reflection
         logger.info(f"Round {round_num + 1} complete, proceeding to round {round_num + 2}")
 
     if return_results:

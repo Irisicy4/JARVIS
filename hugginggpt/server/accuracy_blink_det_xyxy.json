@@ -1,0 +1,208 @@
+{
+  "summary": {
+    "result_file": "/raid/cathy/JARVIS/hugginggpt/server/result_blink_det_xyxy.json",
+    "total_samples": 23,
+    "correct": 9,
+    "parsed": 22,
+    "unparsed_but_responded": 1,
+    "api_failed": 0,
+    "accuracy_overall": 0.3913,
+    "accuracy_of_parsed": 0.4091,
+    "accuracy_of_responded": 0.3913,
+    "per_task": {
+      "Object_Localization": {
+        "total": 23,
+        "correct": 9,
+        "parsed": 22,
+        "api_failed": 0,
+        "accuracy": 0.3913
+      }
+    }
+  },
+  "per_question": [
+    {
+      "id": "Object_Localization_BLINK_78",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_66",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_87",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_54",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_2",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_69",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_83",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_44",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_39",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_17",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_103",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_96",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_38",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_12",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_0",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_29",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_40",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_20",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_73",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_84",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_114",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_80",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_79",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    }
+  ]
+}

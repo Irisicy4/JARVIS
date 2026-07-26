@@ -1,0 +1,10 @@
+# Local model weights (symlinked to /raid/cathy/JARVIS/hugginggpt/server/models)
+server/models/*
+!server/models/download.sh
+!server/models/download.ps1
+server/__pycache__/
+# Large trace logs (kept on disk, not in git)
+server/logs/debug.log
+server/logs/log_success.jsonl
+server/logs/log_fail.jsonl
+server/logs/vllm_72b.log

@@ -1,0 +1,153 @@
+{
+  "summary": {
+    "result_file": "/raid/cathy/JARVIS/hugginggpt/server/result_blink_10_singleround.json",
+    "total_samples": 10,
+    "correct": 3,
+    "parsed": 10,
+    "unparsed_but_responded": 0,
+    "api_failed": 0,
+    "accuracy_overall": 0.3,
+    "accuracy_of_parsed": 0.3,
+    "accuracy_of_responded": 0.3,
+    "per_task": {
+      "Counting": {
+        "total": 1,
+        "correct": 1,
+        "parsed": 1,
+        "api_failed": 0,
+        "accuracy": 1.0
+      },
+      "IQ_Test": {
+        "total": 1,
+        "correct": 0,
+        "parsed": 1,
+        "api_failed": 0,
+        "accuracy": 0.0
+      },
+      "Multi-view_Reasoning": {
+        "total": 2,
+        "correct": 0,
+        "parsed": 2,
+        "api_failed": 0,
+        "accuracy": 0.0
+      },
+      "Object_Localization": {
+        "total": 1,
+        "correct": 0,
+        "parsed": 1,
+        "api_failed": 0,
+        "accuracy": 0.0
+      },
+      "Relative_Reflectance": {
+        "total": 1,
+        "correct": 1,
+        "parsed": 1,
+        "api_failed": 0,
+        "accuracy": 1.0
+      },
+      "Spatial_Relation": {
+        "total": 1,
+        "correct": 1,
+        "parsed": 1,
+        "api_failed": 0,
+        "accuracy": 1.0
+      },
+      "Visual_Correspondence": {
+        "total": 1,
+        "correct": 0,
+        "parsed": 1,
+        "api_failed": 0,
+        "accuracy": 0.0
+      },
+      "Visual_Similarity": {
+        "total": 2,
+        "correct": 0,
+        "parsed": 2,
+        "api_failed": 0,
+        "accuracy": 0.0
+      }
+    }
+  },
+  "per_question": [
+    {
+      "id": "Multi-view_Reasoning_BLINK_128",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_19",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_69",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_75",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_4",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_89",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_38",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_49",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_73",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_92",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    }
+  ]
+}

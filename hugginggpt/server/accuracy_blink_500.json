@@ -1,0 +1,4115 @@
+{
+  "summary": {
+    "result_file": "/raid/cathy/JARVIS/hugginggpt/server/result_blink_500.json",
+    "total_samples": 500,
+    "correct": 173,
+    "parsed": 462,
+    "unparsed_but_responded": 28,
+    "api_failed": 10,
+    "accuracy_overall": 0.346,
+    "accuracy_of_parsed": 0.3745,
+    "accuracy_of_responded": 0.3531,
+    "per_task": {
+      "Art_Style": {
+        "total": 30,
+        "correct": 13,
+        "parsed": 20,
+        "api_failed": 5,
+        "accuracy": 0.4333
+      },
+      "Counting": {
+        "total": 27,
+        "correct": 13,
+        "parsed": 27,
+        "api_failed": 0,
+        "accuracy": 0.4815
+      },
+      "Forensic_Detection": {
+        "total": 34,
+        "correct": 7,
+        "parsed": 28,
+        "api_failed": 4,
+        "accuracy": 0.2059
+      },
+      "Functional_Correspondence": {
+        "total": 44,
+        "correct": 10,
+        "parsed": 44,
+        "api_failed": 0,
+        "accuracy": 0.2273
+      },
+      "IQ_Test": {
+        "total": 34,
+        "correct": 9,
+        "parsed": 34,
+        "api_failed": 0,
+        "accuracy": 0.2647
+      },
+      "Jigsaw": {
+        "total": 39,
+        "correct": 21,
+        "parsed": 36,
+        "api_failed": 0,
+        "accuracy": 0.5385
+      },
+      "Multi-view_Reasoning": {
+        "total": 32,
+        "correct": 12,
+        "parsed": 26,
+        "api_failed": 0,
+        "accuracy": 0.375
+      },
+      "Object_Localization": {
+        "total": 23,
+        "correct": 7,
+        "parsed": 23,
+        "api_failed": 0,
+        "accuracy": 0.3043
+      },
+      "Relative_Depth": {
+        "total": 29,
+        "correct": 13,
+        "parsed": 26,
+        "api_failed": 0,
+        "accuracy": 0.4483
+      },
+      "Relative_Reflectance": {
+        "total": 43,
+        "correct": 10,
+        "parsed": 43,
+        "api_failed": 0,
+        "accuracy": 0.2326
+      },
+      "Semantic_Correspondence": {
+        "total": 45,
+        "correct": 12,
+        "parsed": 45,
+        "api_failed": 0,
+        "accuracy": 0.2667
+      },
+      "Spatial_Relation": {
+        "total": 41,
+        "correct": 25,
+        "parsed": 41,
+        "api_failed": 0,
+        "accuracy": 0.6098
+      },
+      "Visual_Correspondence": {
+        "total": 40,
+        "correct": 7,
+        "parsed": 40,
+        "api_failed": 0,
+        "accuracy": 0.175
+      },
+      "Visual_Similarity": {
+        "total": 39,
+        "correct": 14,
+        "parsed": 29,
+        "api_failed": 1,
+        "accuracy": 0.359
+      }
+    }
+  },
+  "per_question": [
+    {
+      "id": "Visual_Similarity_BLINK_92",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_111",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_51",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_34",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_49",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_121",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_77",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_38",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_24",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_92",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_33",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_32",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "E",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_69",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_38",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_61",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_131",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_58",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_65",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_61",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_74",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_67",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_96",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_78",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_15",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_54",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_71",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_27",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_114",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_113",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_84",
+      "task": "Forensic_Detection",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_129",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_53",
+      "task": "IQ_Test",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_71",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_113",
+      "task": "IQ_Test",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_128",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_55",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_23",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_22",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_13",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_70",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_16",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_79",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_77",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_59",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_10",
+      "task": "Counting",
+      "ground_truth": "B",
+      "predicted": "D",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_107",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_71",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_60",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_79",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_3",
+      "task": "Counting",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_133",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_72",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_92",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_81",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_49",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_101",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_18",
+      "task": "Counting",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_19",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_27",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_18",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_88",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_10",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_134",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_20",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_8",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_89",
+      "task": "Counting",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_44",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_52",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_86",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_64",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_70",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_49",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_55",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_6",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_54",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_104",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_13",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_90",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_25",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_93",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_2",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_86",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_99",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "F",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_78",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_46",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_117",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_121",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_16",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_89",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_90",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_97",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_122",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_84",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_74",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_61",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_86",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_72",
+      "task": "Counting",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_41",
+      "task": "Counting",
+      "ground_truth": "C",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_49",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_20",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_32",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_85",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_47",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_110",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_29",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_30",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_83",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_103",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_15",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_9",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_137",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_87",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_140",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_91",
+      "task": "Counting",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_38",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_93",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_57",
+      "task": "Forensic_Detection",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_62",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_69",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_50",
+      "task": "Forensic_Detection",
+      "ground_truth": "D",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_150",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_92",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_89",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_105",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_114",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_89",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_49",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_125",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_14",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_132",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_15",
+      "task": "IQ_Test",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_34",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_18",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_52",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_83",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_118",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_130",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_55",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_125",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_66",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_4",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_99",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_133",
+      "task": "IQ_Test",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_45",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_28",
+      "task": "Visual_Correspondence",
+      "ground_truth": "B",
+      "predicted": "F",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_135",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_125",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_41",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_117",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_25",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_24",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_45",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_119",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_71",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_117",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_11",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_55",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_24",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_36",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_87",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_54",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_69",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_63",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_96",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_107",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_66",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_68",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_80",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_138",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_41",
+      "task": "Forensic_Detection",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_126",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_4",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_13",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_102",
+      "task": "Counting",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_95",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_3",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_2",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_5",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_0",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_55",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_23",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_97",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_124",
+      "task": "Forensic_Detection",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_117",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_44",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_21",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_53",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_42",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_90",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_95",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_98",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_141",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_87",
+      "task": "Visual_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_84",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_76",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_123",
+      "task": "IQ_Test",
+      "ground_truth": "C",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_6",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_126",
+      "task": "Forensic_Detection",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_121",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_25",
+      "task": "Visual_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_69",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_76",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_118",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_83",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_100",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_63",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_97",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_91",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_63",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_37",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_116",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_87",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_79",
+      "task": "Counting",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_77",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_83",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_26",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_110",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_8",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_1",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Visual_Similarity_BLINK_9",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_149",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_44",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_39",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_112",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_57",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_83",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_115",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_110",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_1",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_113",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_8",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_76",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_58",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_14",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_39",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_24",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_73",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_12",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_84",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_10",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_15",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_134",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_17",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_47",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_91",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_122",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_2",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_25",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_60",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_53",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_51",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_62",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_81",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_60",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_31",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_108",
+      "task": "Forensic_Detection",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_124",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_111",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_23",
+      "task": "Forensic_Detection",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_114",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_78",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "F",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_91",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_103",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_118",
+      "task": "IQ_Test",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_0",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_127",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_80",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_14",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_6",
+      "task": "Counting",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_43",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_126",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_56",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_91",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_127",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_110",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_14",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_28",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_97",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_75",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_3",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_88",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_21",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_64",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_162",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_140",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_96",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_107",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_56",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_18",
+      "task": "Forensic_Detection",
+      "ground_truth": "D",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Object_Localization_BLINK_38",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_58",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_102",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_23",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_129",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_91",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_102",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_12",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_117",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_120",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_27",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_9",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_76",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_89",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_132",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_76",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_39",
+      "task": "Counting",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_61",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_35",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "D",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_0",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_33",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_110",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_27",
+      "task": "Forensic_Detection",
+      "ground_truth": "D",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_121",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_106",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_84",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_7",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_18",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_7",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_8",
+      "task": "Counting",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_106",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_129",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "F",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_12",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_116",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_79",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_112",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_40",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_96",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_128",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_129",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_141",
+      "task": "IQ_Test",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_131",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_37",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_101",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_49",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_83",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_103",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_118",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_29",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_30",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Spatial_Relation_BLINK_123",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_59",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_104",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_93",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_26",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_127",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_29",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_57",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_12",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_137",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "F",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_90",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_90",
+      "task": "Counting",
+      "ground_truth": "B",
+      "predicted": "D",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_4",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_113",
+      "task": "Counting",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_29",
+      "task": "Visual_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_125",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_70",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_41",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_74",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_12",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_60",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_3",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_119",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_40",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_70",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_8",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_93",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_65",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_2",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_108",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_22",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_32",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_101",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_128",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_0",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_102",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_118",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_20",
+      "task": "Object_Localization",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_73",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_9",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_75",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_116",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Object_Localization_BLINK_84",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_47",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_0",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_23",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_1",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_22",
+      "task": "Functional_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_30",
+      "task": "Forensic_Detection",
+      "ground_truth": "D",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_101",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_20",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_128",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_88",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_124",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_107",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_0",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_81",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_51",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_50",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_52",
+      "task": "IQ_Test",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_129",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_112",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_79",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_114",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_133",
+      "task": "Visual_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_20",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_38",
+      "task": "Relative_Reflectance",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_19",
+      "task": "Forensic_Detection",
+      "ground_truth": "D",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Spatial_Relation_BLINK_115",
+      "task": "Spatial_Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_129",
+      "task": "Visual_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_108",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_104",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_2",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_21",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_8",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_104",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_100",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_130",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_13",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_31",
+      "task": "Functional_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_19",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_132",
+      "task": "IQ_Test",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_55",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_75",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_87",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_33",
+      "task": "Functional_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_23",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_56",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_80",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_6",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_24",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_28",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_131",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_120",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_70",
+      "task": "Counting",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_69",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_72",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_5",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_34",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_88",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_105",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_35",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_122",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_89",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_16",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_15",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": true
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_57",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_99",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_6",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_95",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_28",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_84",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_119",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Functional_Correspondence_BLINK_102",
+      "task": "Functional_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_87",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_96",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_43",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_63",
+      "task": "Visual_Correspondence",
+      "ground_truth": "C",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_21",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_51",
+      "task": "Relative_Reflectance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_16",
+      "task": "Counting",
+      "ground_truth": "C",
+      "predicted": "C",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Reflectance_BLINK_36",
+      "task": "Relative_Reflectance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_55",
+      "task": "Forensic_Detection",
+      "ground_truth": "B",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_81",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_26",
+      "task": "Visual_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Object_Localization_BLINK_79",
+      "task": "Object_Localization",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_45",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_88",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_104",
+      "task": "Art_Style",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Spatial_Relation_BLINK_91",
+      "task": "Spatial_Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_82",
+      "task": "Visual_Similarity",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_50",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_52",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_90",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_7",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_169",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_20",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Similarity_BLINK_87",
+      "task": "Visual_Similarity",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_22",
+      "task": "Visual_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_52",
+      "task": "Relative_Depth",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_98",
+      "task": "IQ_Test",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_51",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_69",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_70",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_123",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relative_Depth_BLINK_43",
+      "task": "Relative_Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_85",
+      "task": "Jigsaw",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_58",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_39",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_73",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Forensic_Detection_BLINK_115",
+      "task": "Forensic_Detection",
+      "ground_truth": "A",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_114",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Semantic_Correspondence_BLINK_53",
+      "task": "Semantic_Correspondence",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_56",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "IQ_Test_BLINK_74",
+      "task": "IQ_Test",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Multi-view_Reasoning_BLINK_14",
+      "task": "Multi-view_Reasoning",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Art_Style_BLINK_85",
+      "task": "Art_Style",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Visual_Correspondence_BLINK_117",
+      "task": "Visual_Correspondence",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_60",
+      "task": "Counting",
+      "ground_truth": "C",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Jigsaw_BLINK_21",
+      "task": "Jigsaw",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Counting_BLINK_46",
+      "task": "Counting",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    }
+  ]
+}

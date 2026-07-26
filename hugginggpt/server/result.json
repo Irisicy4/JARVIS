@@ -1,0 +1,11 @@
+[
+  {
+    "id": "Count_1",
+    "task": "Count",
+    "ground_truth": "E",
+    "input": "Given the image(s): CVBench/2D/000001.png\n\nHow many cushions are in the image?\nSelect from the following choices:\n(A) 4\n(B) 5\n(C) 8\n(D) 0\n(E) 6\n(F) 7\n",
+    "response": {
+      "error": "HTTPConnectionPool(host='localhost', port=8004): Max retries exceeded with url: /hugginggpt (Caused by NewConnectionError(\"HTTPConnection(host='localhost', port=8004): Failed to establish a new connection: [Errno 111] Connection refused\"))"
+    }
+  }
+]

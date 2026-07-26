@@ -1,0 +1,845 @@
+{
+  "summary": {
+    "result_file": "/raid/cathy/JARVIS/hugginggpt/server/result_cvbench_100_run2.json",
+    "total_samples": 100,
+    "correct": 52,
+    "parsed": 98,
+    "unparsed_but_responded": 2,
+    "api_failed": 0,
+    "accuracy_overall": 0.52,
+    "accuracy_of_parsed": 0.5306,
+    "accuracy_of_responded": 0.52,
+    "per_task": {
+      "Count": {
+        "total": 34,
+        "correct": 21,
+        "parsed": 34,
+        "api_failed": 0,
+        "accuracy": 0.6176
+      },
+      "Depth": {
+        "total": 17,
+        "correct": 5,
+        "parsed": 16,
+        "api_failed": 0,
+        "accuracy": 0.2941
+      },
+      "Distance": {
+        "total": 21,
+        "correct": 9,
+        "parsed": 21,
+        "api_failed": 0,
+        "accuracy": 0.4286
+      },
+      "Relation": {
+        "total": 28,
+        "correct": 17,
+        "parsed": 27,
+        "api_failed": 0,
+        "accuracy": 0.6071
+      }
+    }
+  },
+  "per_question": [
+    {
+      "id": "Distance_2336",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_1000",
+      "task": "Count",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_131",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1215",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_606",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2440",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_899",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2417",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2409",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_647",
+      "task": "Count",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1938",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "F",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1167",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_208",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_232",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_566",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2480",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2588",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1787",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1360",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_652",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_26",
+      "task": "Count",
+      "ground_truth": "A",
+      "predicted": "E",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_449",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1356",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_952",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1344",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1259",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1353",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1780",
+      "task": "Depth",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_636",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2390",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1319",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_278",
+      "task": "Count",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1230",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2392",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_695",
+      "task": "Count",
+      "ground_truth": "F",
+      "predicted": "E",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1811",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1226",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1664",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_937",
+      "task": "Count",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1336",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2452",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_1018",
+      "task": "Count",
+      "ground_truth": "A",
+      "predicted": "E",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_292",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2636",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_858",
+      "task": "Count",
+      "ground_truth": "E",
+      "predicted": "E",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1917",
+      "task": "Depth",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_860",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_328",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_239",
+      "task": "Count",
+      "ground_truth": "C",
+      "predicted": "E",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2606",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_1022",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2315",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1667",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1717",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_128",
+      "task": "Count",
+      "ground_truth": "E",
+      "predicted": "E",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1794",
+      "task": "Depth",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_100",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1455",
+      "task": "Depth",
+      "ground_truth": "B",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_240",
+      "task": "Count",
+      "ground_truth": "C",
+      "predicted": "D",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_382",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2196",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_633",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_902",
+      "task": "Count",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_787",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "C",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_669",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2372",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1105",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1432",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1081",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1936",
+      "task": "Depth",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_977",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1138",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2410",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2268",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1415",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_574",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1993",
+      "task": "Depth",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_1029",
+      "task": "Count",
+      "ground_truth": "C",
+      "predicted": "D",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2175",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_914",
+      "task": "Count",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2447",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2234",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "B",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_187",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2070",
+      "task": "Distance",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_891",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "D",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1448",
+      "task": "Depth",
+      "ground_truth": "B",
+      "predicted": "F",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1202",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1271",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Count_646",
+      "task": "Count",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Distance_2251",
+      "task": "Distance",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Count_284",
+      "task": "Count",
+      "ground_truth": "D",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1531",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_397",
+      "task": "Relation",
+      "ground_truth": "B",
+      "predicted": "A",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1554",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1389",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_456",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1637",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_610",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": null,
+      "correct": false,
+      "api_failed": false
+    },
+    {
+      "id": "Relation_1266",
+      "task": "Relation",
+      "ground_truth": "A",
+      "predicted": "A",
+      "correct": true,
+      "api_failed": false
+    },
+    {
+      "id": "Depth_1989",
+      "task": "Depth",
+      "ground_truth": "A",
+      "predicted": "B",
+      "correct": false,
+      "api_failed": false
+    }
+  ]
+}
