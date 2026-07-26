@@ -87,6 +87,16 @@ same ordering as the paper, text_only vs image_only p=0.087.
 Note per-run bootstrap CIs are ±10pp at n=100: the paper's column
 resolves nothing smaller than ~7pp at this sample size.
 
+> **Canonical reproduction protocol (operator decision, 2026-07-26):**
+> the SINGLE-ROUND arms (`singleround` baseline + `sr_det_*`) are the
+> recommended configuration for reproducing/extending the Table-4
+> comparison — no multiround confound, deterministic control flow, and
+> the encoding acts through exactly one channel (tool text in the
+> response prompt). The multiround arms are kept as the faithful
+> replication of the published condition only. Exception: seg/depth
+> IMAGE-encoding sweeps still need multiround, since round 1 never
+> attaches pixels to the controller.
+
 ## 4a. Phase-4 results — de-confound + single-tool encoding sweeps
 
 All arms 3 repeats, n=100, temperature 0; `*_stock` = default toolset
