@@ -1264,7 +1264,20 @@ def chat_huggingface(messages, api_key, api_type, api_endpoint, return_planning 
             current_context = context
             current_input = input
 
-        task_str = parse_task(current_context, current_input, api_key, api_type, api_endpoint)
+        # Single-tool isolation with a FORCED round-1 plan: the planner is
+        # bypassed entirely (it plans unregistered task types for e.g.
+        # counting questions even when the prompt's task list is restricted),
+        # mirroring the SpAgent single-tool always-invoke design.
+        forced = config.get("forced_task")
+        if forced and round_num == 0:
+            img_match = re.search(r"([\w./-]+\.(?:png|jpe?g|bmp|webp))", input)
+            if img_match:
+                task_str = json.dumps([{"task": forced, "id": 0, "dep": [-1],
+                                        "args": {"image": img_match.group(1)}}])
+            else:
+                task_str = parse_task(current_context, current_input, api_key, api_type, api_endpoint)
+        else:
+            task_str = parse_task(current_context, current_input, api_key, api_type, api_endpoint)
 
         if "error" in task_str:
             if round_num == 0:

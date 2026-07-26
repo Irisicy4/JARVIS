@@ -52,6 +52,14 @@ case $ARM in
           --config configs/isolate_seg.yaml --config configs/${ARM}.yaml
           --config configs/multiround.yaml)
     ;;
+  # P4-B debugged: FORCED seg plan in round 1 (planner bypass — it plans
+  # unregistered VQA/detection for counting questions otherwise)
+  fseg_overlay_base|fseg_opacity100|fseg_color_by_instance|fseg_contour_only|fseg_polygon_text|fseg_mask_only)
+    INPUT=cvbench_count100.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#fseg_}.yaml --config configs/multiround.yaml)
+    ;;
   seg_stock)
     INPUT=cvbench_count100.jsonl
     ;;
