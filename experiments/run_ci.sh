@@ -9,6 +9,8 @@ set -euo pipefail
 ARM=$1; K=$2
 ROOT=/raid/icy/jarvis-cathy
 PY=/raid/cathy/miniconda3/envs/jarvis/bin/python
+# /tmp/data-gym-cache is owned by another user on this box
+export TIKTOKEN_CACHE_DIR=/raid/icy/iris/.cache/tiktoken
 D=$ROOT/experiments/sandboxes/${ARM}_r${K}
 CFGS=(--config configs/config.default.yaml --config configs/rerun_local.yaml)
 case $ARM in
