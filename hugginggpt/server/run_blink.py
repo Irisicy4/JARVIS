@@ -179,6 +179,12 @@ def main():
         with open(output_file, "w") as f:
             json.dump(results, f, indent=2)
 
+    # Final save: the in-loop save only fires for processed samples, so a
+    # resume run whose trailing samples are all skipped would otherwise drop
+    # them from the file.
+    with open(output_file, "w") as f:
+        json.dump(results, f, indent=2)
+
     failed_count = sum(1 for r in results if is_failed(r))
     print(f"\nDone. {len(results)} results saved to {output_file} ({failed_count} failed)")
 
