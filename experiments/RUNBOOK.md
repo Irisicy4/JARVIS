@@ -12,7 +12,7 @@ ran, with which configs, and where results live.
 
 | Component | Value |
 |---|---|
-| Repo | `/raid/cathy/JARVIS` @ `50166ca` + uncommitted work (now imported as `cathy-work@fbe5a55`) |
+| Repo | `/raid/cathy/JARVIS` @ `50166ca` + uncommitted work (now imported as `judge-work@fbe5a55`) |
 | Python env | `/raid/cathy/miniconda3/envs/jarvis` (py3.8) — both `run_blink.py` and `models_server.py` |
 | Controller | vLLM v0.17.0 `Qwen/Qwen2.5-VL-72B-Instruct`, **TP=4**, `max_model_len=32768`, bf16, port **8001**, served name `Qwen2.5-VL-72B-Instruct` (from `logs/vllm_72b.log`) |
 | Tool server | `models_server.py --config configs/config.default.yaml`, port **8005**, `device: cuda:0`, `local_deployment: full`, `inference_mode: local` |
@@ -70,7 +70,7 @@ A parallel BLINK campaign (same arms, `BLINK_All_Tasks_500sample.jsonl` →
 
 | Component | This rerun | Deviation vs original |
 |---|---|---|
-| Repo | `/raid/icy/jarvis-cathy` @ `cathy-work` (e4ddf5e) | code identical except: full-uuid artifact names (collision safety, commit e4ddf5e) |
+| Repo | `/raid/icy/jarvis-cathy` @ `judge-work` (e4ddf5e) | code identical except: full-uuid artifact names (collision safety, commit e4ddf5e) |
 | Python env | same `/raid/cathy/miniconda3/envs/jarvis` | none (plus `TIKTOKEN_CACHE_DIR=/raid/icy/iris/.cache/tiktoken` — /tmp cache owned by another user) |
 | Controller | **shared existing** vLLM `Qwen2.5-VL-72B-Instruct` @ :8001 (SpAgent fleet) | **TP=2, max_model_len=16384** vs TP=4/32768; server co-serves the SpAgent campaign (no two free GPUs available: GPUs 0-5,7 occupied) |
 | Tool server | `models_server.py --config configs/config.models_server.rerun.yaml` → port **9005**, GPU **6** | port 8005→9005; runwayml SD-v1.5 weights restored from official HF mirror into `/raid/icy/iris/.cache` (cathy's HF cache deleted; only affects text-to-image/controlnet tasks) |

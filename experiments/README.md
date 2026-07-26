@@ -1,6 +1,6 @@
 # Experiments manifest — HuggingGPT (JARVIS) side of Vision-Judge Stage II
 
-Recovered working copy of `/raid/cathy/JARVIS` (branch `cathy-work`,
+Recovered working copy of `/raid/cathy/JARVIS` (branch `judge-work`,
 import commit on top of cathy's `50166ca`). Model weights and the
 BLINK/CVBench image dirs are symlinks (weights →
 `/raid/cathy/JARVIS/hugginggpt/server/models`, images →

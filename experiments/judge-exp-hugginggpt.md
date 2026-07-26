@@ -1,7 +1,7 @@
 # Judge-Transfer Experiments — HuggingGPT side (Design & Status)
 
 Companion to `/raid/icy/spagent-william/experiments/judge-exp.md` (SpAgent
-side). This repo (`/raid/icy/jarvis-cathy`, branch `cathy-work`) is the
+side). This repo (`/raid/icy/jarvis-cathy`, branch `judge-work`) is the
 recovered HuggingGPT Stage-II kitchen: the paper's Table-4 HuggingGPT
 column (57 / 60 / 61 / 63, CV-Bench, controller Qwen2.5-VL-72B) was
 produced here. This doc tracks (a) fidelity vs the paper, (b) CI reruns,
