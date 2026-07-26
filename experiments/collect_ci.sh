@@ -4,7 +4,7 @@
 set -euo pipefail
 ROOT=/raid/icy/jarvis-cathy
 for arm in singleround det_image_only det_image_and_text det_text_only; do
-  for k in 1 2 3; do
+  for k in 1 2 3 4 5; do
     src=$ROOT/experiments/sandboxes/${arm}_r${k}/result.json
     dst=$ROOT/experiments/results/table4-cvbench/$arm/ci_runs/repeat$k
     if [ -f "$src" ]; then

@@ -38,7 +38,7 @@ FAMILIES = {
 
 def load_arm(arm):
     reps = {}
-    for k in (1, 2, 3):
+    for k in (1, 2, 3, 4, 5):
         f = os.path.join(SB, f"{arm}_r{k}", "result.json")
         if not os.path.exists(f):
             continue
@@ -83,7 +83,7 @@ def main():
                 ci = f"{m*100:.2f} [{lo*100:.2f}, {hi*100:.2f}]"
             else:
                 ci = f"{accs[0]*100:.2f} (1 rep)" if accs else "-"
-            complete = all(r["n"] >= 100 for r in reps.values()) and len(reps) == 3
+            complete = all(r["n"] >= 100 for r in reps.values()) and len(reps) == 5
             mark = "" if complete else "  (INCOMPLETE)"
             print(f"{arm:<26}{runs:<30}{ci:<24}{fails}{mark}")
 

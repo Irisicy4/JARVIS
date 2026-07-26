@@ -73,6 +73,26 @@ case $ARM in
   refseg_stock)
     INPUT=cvbench_relation100.jsonl
     ;;
+  # DA-2K point-pair depth probe (single-tool dpt, multiround)
+  da2k_stock)
+    INPUT=da2k_100.jsonl
+    ;;
+  da2k_gray|da2k_plasma|da2k_turbo)
+    INPUT=da2k_100.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_depth.yaml --config configs/depth_${ARM#da2k_}.yaml
+          --config configs/multiround.yaml)
+    ;;
+  # TallyQA-complex counting (forced-plan seg)
+  tqa_stock)
+    INPUT=tallyqa_complex100.jsonl
+    ;;
+  tqa_fseg_polygon_text|tqa_fseg_overlay_base|tqa_fseg_mask_only)
+    INPUT=tallyqa_complex100.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#tqa_fseg_}.yaml --config configs/multiround.yaml)
+    ;;
   *) echo "unknown arm $ARM" >&2; exit 1;;
 esac
 cd "$D"
