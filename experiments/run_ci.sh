@@ -12,13 +12,52 @@ PY=/raid/cathy/miniconda3/envs/jarvis/bin/python
 # /tmp/data-gym-cache is owned by another user on this box
 export TIKTOKEN_CACHE_DIR=/raid/icy/iris/.cache/tiktoken
 D=$ROOT/experiments/sandboxes/${ARM}_r${K}
+INPUT=cvbench_first100.jsonl
 CFGS=(--config configs/config.default.yaml --config configs/rerun_local.yaml)
 case $ARM in
   singleround) ;;
   det_image_only|det_image_and_text|det_text_only)
     CFGS+=(--config configs/${ARM}.yaml --config configs/multiround.yaml)
     ;;
+  # De-confound arms (RUNBOOK §3.1): encoding without multiround (D1-D3)
+  sr_det_image_only|sr_det_image_and_text|sr_det_text_only)
+    CFGS+=(--config configs/${ARM#sr_}.yaml)
+    ;;
+  # D4: multiround without det_encoding
+  mr_baseline)
+    CFGS+=(--config configs/multiround.yaml)
+    ;;
+  # P4-A depth encodings: single-tool (dpt-large), 3D slice, multiround
+  depth_gray|depth_plasma|depth_turbo)
+    INPUT=cvbench_depth100.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_depth.yaml --config configs/${ARM}.yaml
+          --config configs/multiround.yaml)
+    ;;
+  depth_stock)
+    INPUT=cvbench_depth100.jsonl
+    ;;
+  # P4-B semantic-seg encodings: single-tool (detr-panoptic), Count slice
+  seg_overlay_base|seg_opacity100|seg_color_by_instance|seg_contour_only|seg_polygon_text|seg_mask_only)
+    INPUT=cvbench_count100.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/${ARM}.yaml
+          --config configs/multiround.yaml)
+    ;;
+  seg_stock)
+    INPUT=cvbench_count100.jsonl
+    ;;
+  # P4-C referring-seg encodings: masks filtered to referred objects, Relation slice
+  refseg_overlay_base|refseg_opacity100|refseg_color_by_instance|refseg_contour_only|refseg_polygon_text|refseg_mask_only)
+    INPUT=cvbench_relation100.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/seg_${ARM#refseg_}.yaml
+          --config configs/seg_ref.yaml --config configs/multiround.yaml)
+    ;;
+  refseg_stock)
+    INPUT=cvbench_relation100.jsonl
+    ;;
   *) echo "unknown arm $ARM" >&2; exit 1;;
 esac
 cd "$D"
-exec "$PY" run_blink.py cvbench_first100.jsonl result.json "${CFGS[@]}"
+exec "$PY" run_blink.py "$INPUT" result.json "${CFGS[@]}"

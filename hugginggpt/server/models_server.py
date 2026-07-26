@@ -3,6 +3,7 @@ import logging
 import random
 import uuid
 import numpy as np
+import json
 from transformers import pipeline
 from diffusers import DiffusionPipeline, StableDiffusionControlNetPipeline, ControlNetModel, UniPCMultistepScheduler
 from diffusers.utils import load_image
@@ -361,6 +362,77 @@ def status(model_id):
         print(f"[ check {model_id} ] failed")
         return jsonify({"loaded": False})
 
+SEG_PALETTE = [
+    (230, 25, 75), (60, 180, 75), (255, 225, 25), (0, 130, 200),
+    (245, 130, 48), (145, 30, 180), (70, 240, 240), (240, 50, 230),
+    (210, 245, 60), (250, 190, 190), (0, 128, 128), (170, 110, 40),
+]
+
+
+def render_seg_encoding(image, segments, enc):
+    """Render panoptic segments under one of the sweep encodings.
+
+    Returns a result dict: {"path": ...} for image encodings,
+    {"description": ...} for polygon_text.
+    """
+    from PIL import ImageDraw, ImageFilter
+    masks = [s["mask"].convert("L") for s in segments]
+    labels = [s["label"] for s in segments]
+
+    if enc == "polygon_text":
+        import cv2
+        W, H = image.size
+        objs = []
+        for lbl, m in zip(labels, masks):
+            arr = (np.array(m) > 127).astype("uint8")
+            cnts, _ = cv2.findContours(arr, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            if not cnts:
+                continue
+            c = max(cnts, key=cv2.contourArea)
+            approx = cv2.approxPolyDP(c, 0.01 * cv2.arcLength(c, True), True)
+            poly = [[round(float(x) / W, 3), round(float(y) / H, 3)]
+                    for [[x, y]] in approx.tolist()]
+            objs.append({"label": lbl, "polygon": poly})
+        return {"description": "Segmented objects (normalized xy polygons): "
+                               + json.dumps(objs, ensure_ascii=False)}
+
+    # class-color for overlay_base/opacity100/contour_only/mask_only,
+    # instance-color for color_by_instance
+    class_color = {}
+    for lbl in labels:
+        if lbl not in class_color:
+            class_color[lbl] = SEG_PALETTE[len(class_color) % len(SEG_PALETTE)]
+
+    if enc == "mask_only":
+        canvas = Image.new("RGB", image.size, (0, 0, 0))
+    else:
+        canvas = image.copy()
+
+    alpha = 255 if enc in ("opacity100", "mask_only") else 127
+    for i, (lbl, m) in enumerate(zip(labels, masks)):
+        color = (SEG_PALETTE[i % len(SEG_PALETTE)]
+                 if enc == "color_by_instance" else class_color[lbl])
+        if enc == "contour_only":
+            edge = m.filter(ImageFilter.FIND_EDGES).filter(ImageFilter.MaxFilter(5))
+            layer = Image.new("RGBA", m.size, color + (255,))
+            canvas.paste(layer, (0, 0), edge)
+        else:
+            layer = Image.new("RGBA", m.size, color + (alpha,))
+            canvas.paste(layer, (0, 0), m.point(lambda p: alpha if p > 127 else 0))
+
+    draw = ImageDraw.Draw(canvas)
+    for i, (lbl, m) in enumerate(zip(labels, masks)):
+        bbox = m.getbbox()
+        if bbox:
+            color = (SEG_PALETTE[i % len(SEG_PALETTE)]
+                     if enc == "color_by_instance" else class_color[lbl])
+            draw.text((bbox[0] + 3, max(0, bbox[1] - 12)), lbl, fill=color)
+
+    name = str(uuid.uuid4())
+    canvas.save(f"public/images/{name}.jpg")
+    return {"path": f"/images/{name}.jpg"}
+
+
 @app.route('/models/<path:model_id>', methods=['POST'])
 def models(model_id):
     while "using" in pipes[model_id] and pipes[model_id]["using"]:
@@ -500,8 +572,16 @@ def models(model_id):
 
         # depth-estimation
         if model_id == "Intel/dpt-large":
-            output = pipe(request.get_json()["img_url"])
+            req = request.get_json()
+            output = pipe(req["img_url"])
             image = output['depth']
+            cmap_name = req.get("colormap")
+            if cmap_name in ("gray", "plasma", "turbo"):
+                from matplotlib import cm
+                arr = np.array(image.convert("L")).astype("float32")
+                arr = arr / max(float(arr.max()), 1e-6)
+                rgba = cm.get_cmap(cmap_name)(arr)
+                image = Image.fromarray((rgba[..., :3] * 255).astype("uint8"))
             name = str(uuid.uuid4())
             image.save(f"public/images/{name}.jpg")
             result = {"path": f"/images/{name}.jpg"}
@@ -573,22 +653,33 @@ def models(model_id):
         
         # segmentation
         if model_id == "facebook/detr-resnet-50-panoptic":
-            result = []
-            segments = pipe(request.get_json()["img_url"])
-            image = load_image(request.get_json()["img_url"])
+            req = request.get_json()
+            segments = pipe(req["img_url"])
+            image = load_image(req["img_url"]).convert("RGB")
+            enc = req.get("seg_encoding")
+            if enc:
+                ref_text = (req.get("text") or "").lower()
+                if ref_text:
+                    matched = [s for s in segments
+                               if s["label"].lower().rstrip("s") in ref_text
+                               or s["label"].lower() in ref_text]
+                    if matched:
+                        segments = matched
+                result = render_seg_encoding(image, segments, enc)
+            else:
+                # legacy rendering (unchanged behaviour)
+                colors = []
+                for i in range(len(segments)):
+                    colors.append((random.randint(100, 255), random.randint(100, 255), random.randint(100, 255), 50))
 
-            colors = []
-            for i in range(len(segments)):
-                colors.append((random.randint(100, 255), random.randint(100, 255), random.randint(100, 255), 50))
-
-            for segment in segments:
-                mask = segment["mask"]
-                mask = mask.convert('L')
-                layer = Image.new('RGBA', mask.size, colors[i])
-                image.paste(layer, (0, 0), mask)
-            name = str(uuid.uuid4())
-            image.save(f"public/images/{name}.jpg")
-            result = {"path": f"/images/{name}.jpg"}
+                for segment in segments:
+                    mask = segment["mask"]
+                    mask = mask.convert('L')
+                    layer = Image.new('RGBA', mask.size, colors[i])
+                    image.paste(layer, (0, 0), mask)
+                name = str(uuid.uuid4())
+                image.save(f"public/images/{name}.jpg")
+                result = {"path": f"/images/{name}.jpg"}
 
         if model_id == "facebook/maskformer-swin-base-coco" or model_id == "facebook/maskformer-swin-large-ade":
             image = load_image(request.get_json()["img_url"])

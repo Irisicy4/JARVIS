@@ -10,7 +10,9 @@ ROOT=/raid/icy/jarvis-cathy
 SERVER=$ROOT/hugginggpt/server
 SB=$ROOT/experiments/sandboxes
 
-for arm in singleround det_image_only det_image_and_text det_text_only; do
+ARMS=("$@")
+[ ${#ARMS[@]} -eq 0 ] && ARMS=(singleround det_image_only det_image_and_text det_text_only)
+for arm in "${ARMS[@]}"; do
   for k in 1 2 3; do
     d=$SB/${arm}_r${k}
     mkdir -p "$d/logs" "$d/public/audios" "$d/public/videos" "$d/configs"

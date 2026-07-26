@@ -138,6 +138,23 @@ effect on the baseline. Note: in round 1 the controller never sees images
 (§2 wiring table in judge-exp-hugginggpt.md), so D1 vs D2 vs D3 measures
 the *text+tool-chaining* channel only — itself a finding worth reporting.
 
+> **Priority directive (operator, 2026-07-26):** run the encoding tests as
+> single-tool experiments — exactly ONE tool per category (the most
+> confident tool of that category: `Intel/dpt-large` for depth,
+> `facebook/detr-resnet-50-panoptic` for segmentation), on a CV-Bench
+> slice that the tool should provably help; referring segmentation and
+> semantic segmentation tested separately; report per-encoding accuracy.
+> Implemented as §3.2 (depth, 3D slice), §3.3 (semantic seg, Count slice),
+> §3.3b (referring seg, Relation slice); each family includes a
+> `*_stock` control arm (default toolset, single-round — the Table-4
+> baseline config restricted to the slice) to establish the tool's benefit.
+> Isolation = restricted `tprompt.parse_task` (single task option) +
+> private `data/p0_models.jsonl` registering only the tool under test.
+> Encoding parameters travel per-request (`colormap` / `seg_encoding` /
+> `text`) from the per-run config to a second models_server (:9006, GPU 6)
+> running the new formatters, so the original :9005 server and in-flight
+> Phase-3 runs are untouched.
+
 ### 3.2 Depth-colormap sweep (mirrors SpAgent B runs)
 
 Current wiring: `models_server.py` `Intel/dpt-large` returns the HF
@@ -179,10 +196,22 @@ Backend: `facebook/detr-resnet-50-panoptic` (`image-segmentation` task in
 | S5 | polygon-text | none | JSON: label + normalized polygon coords | `seg_polytext.yaml` |
 | S6 | mask-only (neg ctrl) | masks on black background | none | `seg_maskonly.yaml` |
 
-Benchmark: CV-Bench Count slice (n=100 count-only subset of the 500) —
-counting = count instance masks; single-tool isolation (seg ONLY);
-multiround ON (same visibility rationale as §3.2). 6 × 3 repeats = 18
-runs. Hypotheses H1-H3 as in judge-exp.md §N1.
+Benchmark: CV-Bench Count slice (`cvbench_count100.jsonl`) — counting =
+count instance masks; single-tool isolation (detr-panoptic ONLY);
+multiround ON (same visibility rationale as §3.2). 6 encodings × 3
+repeats + `seg_stock` ×3 = 21 runs. Hypotheses H1-H3 as in
+judge-exp.md §N1.
+
+### 3.3b Referring-segmentation sweep (Relation slice)
+
+Same 6 encodings and isolation as §3.3, plus `seg_referring: true`: the
+user request text is passed to the seg tool and masks are filtered to
+segments whose label occurs in the request (fallback: all masks when no
+label matches) — a referring-style variant of the same most-confident
+segmentation tool (stock JARVIS has no text-conditioned segmenter).
+Benchmark: CV-Bench Relation slice (`cvbench_relation100.jsonl`), whose
+questions refer to specific named objects. Arms `refseg_<enc>` ×3 +
+`refseg_stock` ×3 = 21 runs.
 
 ### 3.4 Cross-framework consistency table (analysis only, zero GPU)
 

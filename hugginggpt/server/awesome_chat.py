@@ -630,16 +630,27 @@ def local_model_inference(model_id, data, task):
     # CV tasks
     if task == "depth-estimation":
         img_url = data["image"]
-        response = requests.post(task_url, json={"img_url": img_url})
+        payload = {"img_url": img_url}
+        # encoding sweep: colormap applied server-side per request
+        if config.get("depth_colormap"):
+            payload["colormap"] = config["depth_colormap"]
+        response = requests.post(task_url, json=payload)
         results = response.json()
         if "path" in results:
             results["generated image"] = results.pop("path")
         return results
     if task == "image-segmentation":
         img_url = data["image"]
-        response = requests.post(task_url, json={"img_url": img_url})
+        payload = {"img_url": img_url}
+        # encoding sweep: rendering style applied server-side per request
+        if config.get("seg_encoding"):
+            payload["seg_encoding"] = config["seg_encoding"]
+            if config.get("seg_referring") and data.get("text"):
+                payload["text"] = data["text"]
+        response = requests.post(task_url, json=payload)
         results = response.json()
-        results["generated image"] = results.pop("path")
+        if "path" in results:
+            results["generated image"] = results.pop("path")
         return results
     if task == "image-to-image":
         img_url = data["image"]
@@ -869,6 +880,11 @@ def run_task(input, command, results, api_key, api_type, api_endpoint):
     for resource in ["image", "audio"]:
         if resource in args and not args[resource].startswith("public/") and len(args[resource]) > 0 and not args[resource].startswith("http"):
             args[resource] = f"public/{args[resource]}"
+
+    # referring-segmentation sweep: give the seg tool the user request so it
+    # can restrict masks to the referred objects
+    if task == "image-segmentation" and config.get("seg_referring") and "text" not in args:
+        args["text"] = input
     
     if "-text-to-image" in command['task'] and "text" not in args:
         logger.debug("control-text-to-image task, but text is empty, so we use control-generation instead.")
