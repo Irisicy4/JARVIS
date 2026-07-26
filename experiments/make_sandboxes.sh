@@ -23,7 +23,7 @@ for arm in "${ARMS[@]}"; do
     ln -sfn /raid/cathy/dataset/CVBench "$d/public/CVBench"
     ln -sfn "$SERVER/public/examples" "$d/public/examples"
     ln -sfn "$SERVER/public/images" "$d/public/images"
-    for c in config.default.yaml rerun_local.yaml det_image_only.yaml det_image_and_text.yaml det_text_only.yaml multiround.yaml; do
+    for c in config.default.yaml rerun_local.yaml det_image_only.yaml det_image_and_text.yaml det_text_only.yaml det_text_clean.yaml multiround.yaml; do
       cp "$SERVER/configs/$c" "$d/configs/$c"
     done
   done

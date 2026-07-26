@@ -27,6 +27,14 @@ case $ARM in
   mr_baseline)
     CFGS+=(--config configs/multiround.yaml)
     ;;
+  # Cleaned text encoding (audit follow-up): convention header, top-5,
+  # 2-decimal coords + confidence, raw pixel dump suppressed
+  det_text_clean)
+    CFGS+=(--config configs/det_text_only.yaml --config configs/det_text_clean.yaml --config configs/multiround.yaml)
+    ;;
+  sr_det_text_clean)
+    CFGS+=(--config configs/det_text_only.yaml --config configs/det_text_clean.yaml)
+    ;;
   # P4-A depth encodings: single-tool (dpt-large), 3D slice, multiround
   depth_gray|depth_plasma|depth_turbo)
     INPUT=cvbench_depth100.jsonl

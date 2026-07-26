@@ -700,20 +700,45 @@ def local_model_inference(model_id, data, task):
             results["generated image"] = f"/images/{name}.jpg"
 
         if det_encoding in ("image_and_text", "text_only"):
-            # Build normalized [0,1] xyxy JSON description
-            normalized = [
-                {
-                    "label": item["label"],
-                    "bbox": [
-                        round(item["box"]["xmin"] / W, 4),
-                        round(item["box"]["ymin"] / H, 4),
-                        round(item["box"]["xmax"] / W, 4),
-                        round(item["box"]["ymax"] / H, 4),
-                    ],
-                }
-                for item in predicted
-            ]
-            results["description"] = f"Detected objects: {json.dumps(normalized, ensure_ascii=False)}"
+            if config.get("det_text_clean", False):
+                # cleaned text encoding: explicit convention, top-k by score,
+                # 2-decimal coords, confidence included, no raw pixel dump
+                top = sorted(predicted, key=lambda x: -x.get("score", 0))[:5]
+                objs = [
+                    {
+                        "label": item["label"],
+                        "bbox": [
+                            round(item["box"]["xmin"] / W, 2),
+                            round(item["box"]["ymin"] / H, 2),
+                            round(item["box"]["xmax"] / W, 2),
+                            round(item["box"]["ymax"] / H, 2),
+                        ],
+                        "confidence": round(item.get("score", 0), 2),
+                    }
+                    for item in top
+                ]
+                results["description"] = (
+                    f"Object detection on the {W}x{H} image "
+                    "(bbox = [x_min, y_min, x_max, y_max], normalized to [0,1], "
+                    "origin at top-left; top detections by confidence): "
+                    + json.dumps(objs, ensure_ascii=False)
+                )
+                results.pop("predicted", None)
+            else:
+                # Build normalized [0,1] xyxy JSON description
+                normalized = [
+                    {
+                        "label": item["label"],
+                        "bbox": [
+                            round(item["box"]["xmin"] / W, 4),
+                            round(item["box"]["ymin"] / H, 4),
+                            round(item["box"]["xmax"] / W, 4),
+                            round(item["box"]["ymax"] / H, 4),
+                        ],
+                    }
+                    for item in predicted
+                ]
+                results["description"] = f"Detected objects: {json.dumps(normalized, ensure_ascii=False)}"
 
         if det_encoding is not None:
             results["_det_encoding"] = det_encoding
