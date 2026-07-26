@@ -62,12 +62,73 @@ mechanism as the original), then score with
 `score_table4.py --dir <ci_run>`; aggregate with across-repeat t-CI +
 per-item bootstrap + McNemar paired tests on shared items.
 
-| Arm | Reported | Rerun status | Mean [95% t-CI] |
-|---|---|---|---|
-| singleround | 57.00 | pending | — |
-| det image_only | 60.00 | pending | — |
-| det image_and_text | 61.00 | pending | — |
-| det text_only | 63.00 | pending | — |
+All 12 runs complete, 0 hard failures after backfill (the `replace_slot`
+backslash fix, commit c8b7be3, eliminated the deterministic Depth-sample
+failures present in the original runs too).
+
+| Arm | Reported | Rerun repeats | Mean [95% t-CI] | Verdict |
+|---|---|---|---|---|
+| singleround | 57.00 | 58/57/57 | **57.33 [55.90, 58.77]** | ✅ reproduces |
+| det image_only | 60.00 (+3) | 60/55/58 | 57.67 [51.42, 63.91] | ❌ delta does not reproduce (mean ≈ baseline; 60 = best-of-3) |
+| det image_and_text | 61.00 (+4) | 57/55/59 | 57.00 [52.03, 61.97] | ❌ delta does not reproduce |
+| det text_only | 63.00 (+6) | 61/58/55 | 58.00 [50.55, 65.45] | ❌ delta does not reproduce (63 inside wide CI, but see McNemar) |
+
+Paired McNemar (pooled over repeats, shared items): **every pair p ≥ 0.79**
+— no paired evidence for any det-arm advantage over the baseline in the
+published (multiround) configuration. Discordant counts are balanced
+(e.g. singleround vs text_only 20/22). The paper's +3/+4/+6 column is
+best read as run-to-run noise (±3pp at n=100, temperature 0) on top of
+curation (backfill + manual answers) that favoured the det arms.
+
+The one surviving encoding signal is in the de-confounded single-round
+arms (§4a): text_only 59.0 > image_and_text 57.0 > image_only 55.7 —
+same ordering as the paper, text_only vs image_only p=0.087.
+
+Note per-run bootstrap CIs are ±10pp at n=100: the paper's column
+resolves nothing smaller than ~7pp at this sample size.
+
+## 4a. Phase-4 results — de-confound + single-tool encoding sweeps
+
+All arms 3 repeats, n=100, temperature 0; `*_stock` = default toolset
+single-round (Table-4 baseline config) on the same slice. Full data:
+`results/p4-encodings/`; aggregation: `score_p4.py`.
+
+**De-confound (first-100 set):**
+
+| Arm | Mean [95% t-CI] | Note |
+|---|---|---|
+| sr_det_image_only | 55.67 [43.42, 67.91] | encoding without multiround |
+| sr_det_image_and_text | 57.00 [50.43, 63.57] | |
+| sr_det_text_only | **59.00 [56.52, 61.48]** | ordering matches paper; vs image_only p=0.087 |
+| mr_baseline (multiround, no det_encoding) | 52.57 [46.71, 58.42] | multiround alone HURTS (vs sr_det_text_only p=0.026) |
+
+**Depth (3D slice, dpt-large only, multiround):** stock 56.67 <
+turbo 62.00 < gray 63.00 < **plasma 64.00 [59.70, 68.30]**. Tool provably
+helps (plasma vs stock McNemar p=0.035; gray p=0.079). Plasma-first
+**matches Stage-I** and **opposes SpAgent Stage-II** (turbo>gray>plasma
+there) — the depth-colormap ordering is not framework-stable, though
+between-colormap gaps here are individually non-significant.
+
+**Semantic seg (Count slice, detr-panoptic only, multiround):** total
+collapse — every encoding 22.7–24.0 vs stock 62.0 (all McNemar p<1e-4
+vs stock; encodings mutually indistinguishable; mask_only negative
+control NOT worse than overlay). The encoding axis is unmeasurable:
+panoptic masks carry no usable counting signal for a controller that is
+text-blind in round 1. Stage-I→II transfer for semantic seg is undefined
+in HuggingGPT; the paper's §5.2 flip-prediction is not borne out here.
+
+**Referring seg (Relation slice, label-filtered masks, multiround):**
+stock 60.67; image encodings all ~51 (each p≤0.001 below stock);
+**polygon_text 59.00 [54.70, 63.30]** ≈ stock and significantly above
+every image encoding (p≈0.005–0.008 pairwise). Text encodings dominate
+segmentation output in this framework — consistent with the Stage-I
+polygon-text signal and with the round-1 wiring (controller sees text
+only).
+
+**Audit follow-up arms (running):** det_text_clean / sr_det_text_clean —
+convention-explicit, W×H-stated, top-5, 2-decimal, no raw pixel dump —
+directly test the "distracting text" hypothesis against det_text_only /
+sr_det_text_only.
 
 ## 4. Expansion (Phase 4)
 
