@@ -119,13 +119,18 @@ helps (plasma vs stock McNemar p=0.035; gray p=0.079). Plasma-first
 there) — the depth-colormap ordering is not framework-stable, though
 between-colormap gaps here are individually non-significant.
 
-**Semantic seg (Count slice, detr-panoptic only, multiround):** total
+**Instance seg — counting (Count slice, detr-panoptic only, multiround):** total
 collapse — every encoding 22.7–24.0 vs stock 62.0 (all McNemar p<1e-4
 vs stock; encodings mutually indistinguishable; mask_only negative
 control NOT worse than overlay). The encoding axis is unmeasurable:
 panoptic masks carry no usable counting signal for a controller that is
 text-blind in round 1. Stage-I→II transfer for semantic seg is undefined
 in HuggingGPT; the paper's §5.2 flip-prediction is not borne out here.
+Stage-I seg-type correspondence: counting = the INSTANCE-seg axis; the
+forced-plan (fseg) arms match the Stage-I instance-seg ranking
+(polygon-text first, mask-only last). The Relation-slice referring proxy
+DIVERGES from Stage-I's referring-type preference (image competitive at
+judging) — text-first wiring dominates at HuggingGPT runtime.
 
 **Referring seg (Relation slice, label-filtered masks, multiround):**
 stock 60.67; image encodings all ~51 (each p≤0.001 below stock);
