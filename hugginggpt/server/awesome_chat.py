@@ -501,7 +501,7 @@ def huggingface_model_inference(model_id, data, task):
     if task == "text-to-image":
         inputs = data["text"]
         img = inference(inputs)
-        name = str(uuid.uuid4())[:4]
+        name = str(uuid.uuid4())
         img.save(f"public/images/{name}.png")
         result = {}
         result["generated image"] = f"/images/{name}.png"
@@ -523,7 +523,7 @@ def huggingface_model_inference(model_id, data, task):
 
             layer = Image.new('RGBA', mask.size, colors[i])
             image.paste(layer, (0, 0), mask)
-        name = str(uuid.uuid4())[:4]
+        name = str(uuid.uuid4())
         image.save(f"public/images/{name}.jpg")
         result = {}
         result["generated image"] = f"/images/{name}.jpg"
@@ -544,7 +544,7 @@ def huggingface_model_inference(model_id, data, task):
             box = label["box"]
             draw.rectangle(((box["xmin"], box["ymin"]), (box["xmax"], box["ymax"])), outline=color_map[label["label"]], width=2)
             draw.text((box["xmin"]+5, box["ymin"]-15), label["label"], fill=color_map[label["label"]])
-        name = str(uuid.uuid4())[:4]
+        name = str(uuid.uuid4())
         image.save(f"public/images/{name}.jpg")
         result = {}
         result["generated image"] = f"/images/{name}.jpg"
@@ -569,7 +569,7 @@ def huggingface_model_inference(model_id, data, task):
         inputs = data["text"]
         response = inference(inputs, raw_response=True)
         # response = requests.post(task_url, headers=HUGGINGFACE_HEADERS, json={"inputs": text})
-        name = str(uuid.uuid4())[:4]
+        name = str(uuid.uuid4())
         with open(f"public/audios/{name}.flac", "wb") as f:
             f.write(response.content)
         result = {"generated audio": f"/audios/{name}.flac"}
@@ -587,7 +587,7 @@ def huggingface_model_inference(model_id, data, task):
                 if k == "content-type":
                     type = "audio/flac".split("/")[-1]
             audio = AudioSegment.from_file(BytesIO(content))
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             audio.export(f"public/audios/{name}.{type}", format=type)
             result = {"generated audio": f"/audios/{name}.{type}"}
     return result
@@ -681,7 +681,7 @@ def local_model_inference(model_id, data, task):
                     outline=color_map[item["label"]], width=2,
                 )
                 draw.text((box["xmin"] + 5, box["ymin"] - 15), item["label"], fill=color_map[item["label"]])
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             image.save(f"public/images/{name}.jpg")
             results["generated image"] = f"/images/{name}.jpg"
 
@@ -1035,7 +1035,7 @@ def _draw_bbox_separate_image(predicted, original_image_path):
             draw.rectangle([(text_x, text_y), (text_x + tw + 4, text_y + th + 2)], fill=(255, 0, 0))
             draw.text((text_x + 2, text_y), label, fill=(255, 255, 255), font=font)
 
-        name = str(uuid.uuid4())[:4]
+        name = str(uuid.uuid4())
         save_path = f"public/images/{name}_bbox.jpg"
         os.makedirs("public/images", exist_ok=True)
         black_img.save(save_path)

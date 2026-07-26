@@ -389,7 +389,7 @@ def models(model_id):
             prompt = request.get_json()["text"]
             video_frames = pipe(prompt, num_inference_steps=50, num_frames=40).frames
             video_path = export_to_video(video_frames)
-            file_name = str(uuid.uuid4())[:4]
+            file_name = str(uuid.uuid4())
             os.system(f"LD_LIBRARY_PATH=/usr/local/lib /usr/local/bin/ffmpeg -i {video_path} -vcodec libx264 public/videos/{file_name}.mp4")
             result = {"path": f"/videos/{file_name}.mp4"}
 
@@ -401,7 +401,7 @@ def models(model_id):
             control_image = load_image(request.get_json()["img_url"])
             # generator = torch.manual_seed(66)
             out_image: Image = pipe(request.get_json()["text"], num_inference_steps=20, image=control_image).images[0]
-            file_name = str(uuid.uuid4())[:4]
+            file_name = str(uuid.uuid4())
             out_image.save(f"public/images/{file_name}.png")
             result = {"path": f"/images/{file_name}.png"}
 
@@ -413,14 +413,14 @@ def models(model_id):
                 control = pipe(image, low_threshold=100, high_threshold=200)
             else:
                 control = pipe(image)
-            file_name = str(uuid.uuid4())[:4]
+            file_name = str(uuid.uuid4())
             control.save(f"public/images/{file_name}.png")
             result = {"path": f"/images/{file_name}.png"}
 
         # image to image
         if model_id == "lambdalabs/sd-image-variations-diffusers":
             im = load_image(request.get_json()["img_url"])
-            file_name = str(uuid.uuid4())[:4]
+            file_name = str(uuid.uuid4())
             with open(f"public/images/{file_name}.png", "wb") as f:
                 f.write(request.data)
             tform = transforms.Compose([
@@ -469,7 +469,7 @@ def models(model_id):
 
         # text to image
         if model_id == "runwayml/stable-diffusion-v1-5":
-            file_name = str(uuid.uuid4())[:4]
+            file_name = str(uuid.uuid4())
             text = request.get_json()["text"]
             out = pipe(prompt=text)
             out["images"][0].save(f"public/images/{file_name}.jpg")
@@ -502,7 +502,7 @@ def models(model_id):
         if model_id == "Intel/dpt-large":
             output = pipe(request.get_json()["img_url"])
             image = output['depth']
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             image.save(f"public/images/{name}.jpg")
             result = {"path": f"/images/{name}.jpg"}
 
@@ -521,7 +521,7 @@ def models(model_id):
             output = prediction.squeeze().cpu().numpy()
             formatted = (output * 255 / np.max(output)).astype("uint8")
             image = Image.fromarray(formatted)
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             image.save(f"public/images/{name}.jpg")
             result = {"path": f"/images/{name}.jpg"}
 
@@ -529,7 +529,7 @@ def models(model_id):
         if model_id == "espnet/kan-bayashi_ljspeech_vits":
             text = request.get_json()["text"]
             wav = pipe(text)["wav"]
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             sf.write(f"public/audios/{name}.wav", wav.cpu().numpy(), pipe.fs, "PCM_16")
             result = {"path": f"/audios/{name}.wav"}
 
@@ -540,7 +540,7 @@ def models(model_id):
             speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"]).unsqueeze(0).to(pipes[model_id]["device"])
             pipes[model_id]["vocoder"].to(pipes[model_id]["device"])
             speech = pipe.generate_speech(inputs["input_ids"].to(pipes[model_id]["device"]), speaker_embeddings, vocoder=pipes[model_id]["vocoder"])
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             sf.write(f"public/audios/{name}.wav", speech.cpu().numpy(), samplerate=16000)
             result = {"path": f"/audios/{name}.wav"}
 
@@ -555,7 +555,7 @@ def models(model_id):
             wav, sr = torchaudio.load(audio_url)
             with torch.no_grad():
                 result_wav = pipe(wav.to(pipes[model_id]["device"]))
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             sf.write(f"public/audios/{name}.wav", result_wav.cpu().squeeze().numpy(), sr)
             result = {"path": f"/audios/{name}.wav"}
         
@@ -567,7 +567,7 @@ def models(model_id):
             speaker_embeddings = torch.tensor(embeddings_dataset[7306]["xvector"]).unsqueeze(0)
             pipes[model_id]["vocoder"].to(pipes[model_id]["device"])
             speech = pipe.generate_speech(inputs["input_ids"].to(pipes[model_id]["device"]), speaker_embeddings, vocoder=pipes[model_id]["vocoder"])
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             sf.write(f"public/audios/{name}.wav", speech.cpu().numpy(), samplerate=16000)
             result = {"path": f"/audios/{name}.wav"}
         
@@ -586,7 +586,7 @@ def models(model_id):
                 mask = mask.convert('L')
                 layer = Image.new('RGBA', mask.size, colors[i])
                 image.paste(layer, (0, 0), mask)
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             image.save(f"public/images/{name}.jpg")
             result = {"path": f"/images/{name}.jpg"}
 
@@ -597,7 +597,7 @@ def models(model_id):
             result = pipes[model_id]["feature_extractor"].post_process_panoptic_segmentation(outputs, target_sizes=[image.size[::-1]])[0]
             predicted_panoptic_map = result["segmentation"].cpu().numpy()
             predicted_panoptic_map = Image.fromarray(predicted_panoptic_map.astype(np.uint8))
-            name = str(uuid.uuid4())[:4]
+            name = str(uuid.uuid4())
             predicted_panoptic_map.save(f"public/images/{name}.jpg")
             result = {"path": f"/images/{name}.jpg"}
 

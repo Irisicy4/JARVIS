@@ -1,0 +1,5 @@
+# CI-rerun override layer: this recovery's models_server port (9000s range
+# per fleet etiquette; original 8005 stays free for other users).
+local_inference_endpoint:
+  host: localhost
+  port: 9005
