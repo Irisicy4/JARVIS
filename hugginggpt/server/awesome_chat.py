@@ -282,7 +282,10 @@ def replace_slot(text, entries):
     for key, value in entries.items():
         if not isinstance(value, str):
             value = str(value)
-        text = text.replace("{{" + key +"}}", value.replace('"', "'").replace('\n', ""))
+        # escape backslashes first: slot values are spliced into JSON string
+        # literals, and a raw backslash (e.g. a repr-escaped \n inside tool
+        # output) makes json.loads fail with "Invalid \escape"
+        text = text.replace("{{" + key +"}}", value.replace('\\', '\\\\').replace('"', "'").replace('\n', ""))
     return text
 
 def find_json(s):
