@@ -8,3 +8,5 @@ server/logs/debug.log
 server/logs/log_success.jsonl
 server/logs/log_fail.jsonl
 server/logs/vllm_72b.log
+# rerun overlay artifacts (originals from the import remain tracked)
+server/public/images/
