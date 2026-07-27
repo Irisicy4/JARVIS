@@ -407,6 +407,40 @@ def render_seg_encoding(image, segments, enc):
     masks = [s["mask"].convert("L") for s in segments]
     labels = [s["label"] for s in segments]
 
+    if enc == "matrix_text":
+        # Stage-I sub-sampled matrix (masks.grid_from_class_map +
+        # matrix_to_text + grid_legend), 20x20-pixel cells, majority vote.
+        PPC = 20
+        W, H = image.size
+        class_map = np.zeros((H, W), dtype=np.int32)
+        labels_seen = []
+        for lbl, m in zip(labels, masks):
+            if lbl not in labels_seen:
+                labels_seen.append(lbl)
+            idx = labels_seen.index(lbl) + 1
+            mm = np.asarray(m) > 127
+            class_map[mm & (class_map == 0)] = idx
+        rows_n = max(1, H // PPC); cols_n = max(1, W // PPC)
+        grid = np.zeros((rows_n, cols_n), dtype=np.int32)
+        for r in range(rows_n):
+            for c in range(cols_n):
+                blk = class_map[r*PPC:(r+1)*PPC, c*PPC:(c+1)*PPC]
+                if blk.size == 0:
+                    continue
+                vals, cnts = np.unique(blk, return_counts=True)
+                nz = vals > 0
+                if nz.any():
+                    grid[r, c] = int(vals[nz][cnts[nz].argmax()])
+        legend = [
+            f"Grid size (rows x cols): {rows_n} x {cols_n}. Each cell summarises "
+            f"one {PPC}x{PPC} pixel block of the original image, taking the class "
+            "with the largest area in that block.",
+            "0 = unlabeled (no class)",
+        ]
+        legend += [f"{i} = {l}" for i, l in enumerate(labels_seen, start=1)]
+        matrix = "\n".join(" ".join(str(int(x)) for x in row) for row in grid)
+        return {"description": "\n".join(legend) + "\n" + matrix}
+
     if enc == "polygon_text":
         import cv2
         W, H = image.size
@@ -442,12 +476,24 @@ def render_seg_encoding(image, segments, enc):
         if lbl not in class_color:
             class_color[lbl] = SEG_PALETTE[len(class_color) % len(SEG_PALETTE)]
 
-    if enc == "mask_only":
+    if enc == "separate_green":
+        # reference SEPARATE: masks composited OPAQUELY in solid green on a
+        # pure black canvas - no photo, no boxes, no labels. The source photo
+        # is supplied separately by attach_images_to_response.
+        canvas = Image.new("RGB", image.size, (0, 0, 0))
+        for m in masks:
+            layer = Image.new("RGBA", m.size, (0, 255, 0, 255))
+            canvas.paste(layer, (0, 0), m.point(lambda p: 255 if p > 127 else 0))
+        name = str(uuid.uuid4())
+        canvas.save(f"public/images/{name}.jpg")
+        return {"path": f"/images/{name}.jpg"}
+
+    if enc in ("mask_only", "canvas_bbox"):
         canvas = Image.new("RGB", image.size, (0, 0, 0))
     else:
         canvas = image.copy()
 
-    alpha = 255 if enc in ("opacity100", "mask_only") else 127
+    alpha = 255 if enc in ("opacity100", "mask_only", "canvas_bbox") else 127
     for i, (lbl, m) in enumerate(zip(labels, masks)):
         color = (SEG_PALETTE[i % len(SEG_PALETTE)]
                  if enc == "color_by_instance" else class_color[lbl])
@@ -460,11 +506,23 @@ def render_seg_encoding(image, segments, enc):
             canvas.paste(layer, (0, 0), m.point(lambda p: alpha if p > 127 else 0))
 
     draw = ImageDraw.Draw(canvas)
+    per_lbl = {}
     for i, (lbl, m) in enumerate(zip(labels, masks)):
         bbox = m.getbbox()
-        if bbox:
-            color = (SEG_PALETTE[i % len(SEG_PALETTE)]
-                     if enc == "color_by_instance" else class_color[lbl])
+        if not bbox:
+            continue
+        color = (SEG_PALETTE[i % len(SEG_PALETTE)]
+                 if enc == "color_by_instance" else class_color[lbl])
+        if enc == "color_by_instance":
+            # reference form: per-instance colour + bounding box + numbered label
+            per_lbl[lbl] = per_lbl.get(lbl, 0) + 1
+            draw.rectangle(bbox, outline=color, width=2)
+            draw.text((bbox[0] + 3, max(0, bbox[1] - 12)),
+                      f"{lbl} {per_lbl[lbl]}", fill=color)
+        elif enc == "canvas_bbox":
+            draw.rectangle(bbox, outline=color, width=2)
+            draw.text((bbox[0] + 3, max(0, bbox[1] - 12)), lbl, fill=color)
+        elif enc != "plain_overlay":   # Stage-I worst arm carries no labels
             draw.text((bbox[0] + 3, max(0, bbox[1] - 12)), lbl, fill=color)
 
     name = str(uuid.uuid4())
@@ -700,6 +758,21 @@ def models(model_id):
         if model_id == "facebook/detr-resnet-50-panoptic":
             req = request.get_json()
             segments = pipe(req["img_url"])
+            # The local checkpoint config ships placeholder names for the
+            # stuff classes ("LABEL_184"), which makes semantic questions
+            # unanswerable. Resolve them from the upstream id2label map.
+            global _PANOPTIC_ID2LABEL
+            try:
+                _PANOPTIC_ID2LABEL
+            except NameError:
+                try:
+                    _PANOPTIC_ID2LABEL = json.load(open("data/panoptic_id2label.json"))
+                except Exception:
+                    _PANOPTIC_ID2LABEL = {}
+            for seg in segments:
+                lbl = seg.get("label", "")
+                if isinstance(lbl, str) and lbl.startswith("LABEL_"):
+                    seg["label"] = _PANOPTIC_ID2LABEL.get(lbl.split("_")[-1], lbl)
             image = load_image(req["img_url"]).convert("RGB")
             enc = req.get("seg_encoding")
             if enc:

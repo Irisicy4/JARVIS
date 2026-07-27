@@ -248,3 +248,35 @@ much runs actually varied, which is what a reader needs to judge whether an
 encoding gap exceeds run-to-run noise. sd is descriptive only — every claim
 that a difference is real rests on paired per-item tests (McNemar / paired
 bootstrap) on shared items, which are unchanged.
+
+### Depth polarity audit (2026-07-27, cross-framework request)
+
+| Pipeline | brighter pixel == annotated closer point |
+|---|---|
+| SpAgent, before their fix | 1/25 (4%) — inverted |
+| SpAgent, after their fix | 20/20 (100%) |
+| **HuggingGPT, markers baked into the image** | 15/25 (60%) |
+| **HuggingGPT, CLEAN images** | **15/20 (75%) — not inverted** |
+
+We do NOT have the disparity/distance inversion: HF's `depth-estimation`
+pipeline returns MiDaS/DPT disparity and its `depth` PIL image is already
+bright = near, and we colormap that directly. The residual 25% is DPT-large
+being wrong on hard point pairs (thin structures, sky, reflective surfaces),
+not a polarity bug — an inverted pipeline scores ~4%, not 75%.
+
+The 60% figure measured earlier is the **marker-contamination** confound,
+not polarity: the A/B markers are baked into the image before depth
+estimation, so DPT estimates the depth of the drawn circles (measured: flat
+patch of 100.0 under marker A vs 140.5 in the surrounding ring; 122.7 vs
+68.8 under B). Running depth on the clean image recovers 15 points of
+agreement. Any marker-based depth benchmark should render markers onto the
+depth map AFTER estimation.
+
+**Turbo legend disagreement worth resolving before the paper.** The
+reference fixture `tests/fixtures/depth/turbo.png` shows the near tree trunk
+RED, but the reference legend text says "blue is the closest ... red is the
+furthest" — the fixture and the text contradict each other. Our renderer maps
+near -> red (turbo(1.0) with high = near), so we match the FIXTURE and our
+legend says red = closest. A framework that aligns to the reference TEXT
+instead will have near = blue, i.e. the two frameworks' turbo arms are then
+measuring opposite renderings under the same arm name.

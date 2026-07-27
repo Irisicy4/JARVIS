@@ -734,7 +734,11 @@ def local_model_inference(model_id, data, task):
         results = {"predicted": predicted}
 
         if det_encoding in ("image_only", "image_and_text") or det_encoding is None:
-            # Draw coloured bboxes on the original image
+            # Stage-I variants: nolabel = boxes only (their BEST);
+            # canvas = box+label on a black canvas, photo discarded (their WORST)
+            det_style = config.get("det_box_style", "labelled")
+            if det_style == "canvas":
+                image = Image.new("RGB", image.size, (0, 0, 0))
             draw = ImageDraw.Draw(image)
             color_map = {}
             for item in predicted:
@@ -747,7 +751,8 @@ def local_model_inference(model_id, data, task):
                     ((box["xmin"], box["ymin"]), (box["xmax"], box["ymax"])),
                     outline=color_map[item["label"]], width=2,
                 )
-                draw.text((box["xmin"] + 5, box["ymin"] - 15), item["label"], fill=color_map[item["label"]])
+                if det_style != "nolabel":
+                    draw.text((box["xmin"] + 5, box["ymin"] - 15), item["label"], fill=color_map[item["label"]])
             name = str(uuid.uuid4())
             image.save(f"public/images/{name}.jpg")
             results["generated image"] = f"/images/{name}.jpg"

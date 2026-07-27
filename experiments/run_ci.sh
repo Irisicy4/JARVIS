@@ -155,7 +155,94 @@ case $ARM in
     INPUT=cococount300.jsonl
     CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
           --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
-          --config configs/seg_${ARM#cc_}.yaml --config configs/depth_probe_fix.yaml)
+          --config configs/seg_${ARM#cc_}.yaml --config configs/attach_images.yaml)
+    ;;
+  # Easy COCO-Count (142, no same-class overlap) — difficulty-only contrast
+  cce_stock)
+    INPUT=cococount_easy142.jsonl
+    ;;
+  cce_overlay_base|cce_color_by_instance|cce_polygon_text|cce_mask_only)
+    INPUT=cococount_easy142.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#cce_}.yaml --config configs/attach_images.yaml)
+    ;;
+  # SEMANTIC axis: largest-region-area on COCO panoptic (250, 65% stuff winners)
+  ca_stock)
+    INPUT=cocoarea250.jsonl
+    ;;
+  ca_overlay_base|ca_color_by_instance|ca_polygon_text|ca_mask_only)
+    INPUT=cocoarea250.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#ca_}.yaml --config configs/attach_images.yaml)
+    ;;
+  # REFERRING: separate(best) | contour(middle) | overlay+fill base(worst)
+  rsF_separate_green|rsF_contour_only|rsF_overlay_base)
+    INPUT=cvbench_relation100.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#rsF_}.yaml --config configs/seg_ref.yaml
+          --config configs/attach_images.yaml)
+    ;;
+  rsF_stock)
+    INPUT=cvbench_relation100.jsonl
+    ;;
+  # NYU-pairs depth (sensor GT, cluttered indoor) - 4 arms
+  nyu_stock)
+    INPUT=nyupairs250.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/attach_images.yaml)
+    ;;
+  nyu_plasma|nyu_turbo|nyu_gray)
+    INPUT=nyupairs250.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_depth.yaml --config configs/depth_${ARM#nyu_}.yaml
+          --config configs/depth_probe_fix.yaml)
+    ;;
+  # ===== FINAL Stage-I best/mid/worst (Fig-4 median ranking) =====
+  # DETECTION: xyxy(best) | box+label overlay(mid) | separate=boxes on canvas(worst)
+  dF_mid)
+    CFGS+=(--config configs/det_image_only.yaml --config configs/isolate_det.yaml
+           --config configs/attach_images.yaml)
+    ;;
+  # INSTANCE/COUNT on easy cococount: colour-by-instance(best) | mask-only(mid) | polygon(worst)
+  ccF_color_by_instance|ccF_mask_only|ccF_polygon_text|ccF_separate_green)
+    INPUT=cococount_easy142.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#ccF_}.yaml --config configs/attach_images.yaml)
+    ;;
+  # SEMANTIC/AREA: matrix text(best) | separate=opaque mask canvas(mid) | overlay base(worst)
+  caF_matrix_text|caF_mask_only|caF_overlay_base|caF_separate_green)
+    INPUT=cocoarea250.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#caF_}.yaml --config configs/attach_images.yaml)
+    ;;
+  # ===== Stage-I BEST / MIDDLE / WORST design (3 arms + no-tool per axis) =====
+  # DETECTION (CV-Bench 100): best=boxes no labels, mid=text xyxy pixel, worst=box+label on canvas
+  d3_best)
+    CFGS+=(--config configs/det_image_only.yaml --config configs/det_box_nolabel.yaml
+           --config configs/isolate_det.yaml --config configs/det_probe_fix.yaml)
+    ;;
+  d3_worst)
+    CFGS+=(--config configs/det_image_only.yaml --config configs/det_box_canvas.yaml
+           --config configs/isolate_det.yaml --config configs/det_probe_fix.yaml)
+    ;;
+  # INSTANCE-SEG counting (COCO-Count easy 142): best=canvas+bbox, mid=polygon, worst=plain overlay
+  cce_canvas_bbox|cce_plain_overlay)
+    INPUT=cococount_easy142.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#cce_}.yaml --config configs/attach_images.yaml)
+    ;;
+  # SEMANTIC area (COCO-Area 250): best=matrix text, mid=polygon, worst=plain overlay
+  ca_matrix_text|ca_plain_overlay)
+    INPUT=cocoarea250.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#ca_}.yaml --config configs/attach_images.yaml)
     ;;
   # TallyQA-complex counting (forced-plan seg)
   tqa_stock)
