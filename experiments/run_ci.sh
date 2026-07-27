@@ -83,6 +83,16 @@ case $ARM in
           --config configs/isolate_depth.yaml --config configs/depth_${ARM#da2k_}.yaml
           --config configs/multiround.yaml)
     ;;
+  # DA-2K 300 balanced (cross-framework family, sibling ASK 1)
+  da300_stock)
+    INPUT=da2k_300balanced.jsonl
+    ;;
+  da300_gray|da300_plasma|da300_turbo)
+    INPUT=da2k_300balanced.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_depth.yaml --config configs/depth_${ARM#da300_}.yaml
+          --config configs/multiround.yaml)
+    ;;
   # TallyQA-complex counting (forced-plan seg)
   tqa_stock)
     INPUT=tallyqa_complex100.jsonl
