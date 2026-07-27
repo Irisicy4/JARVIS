@@ -681,10 +681,16 @@ def local_model_inference(model_id, data, task):
             results["generated image"] = results.pop("path")
         cmap = config.get("depth_colormap")
         if cmap:
+            # Legends must match THIS renderer, verified empirically: DPT
+            # returns disparity (bright = near), and we colormap it directly,
+            # so high values -> plasma yellow / turbo RED / white. The Stage-I
+            # reference ships pre-rendered maps whose turbo legend says
+            # blue=closest; adopting that wording verbatim would contradict
+            # our own image, so turbo is described to match our rendering.
             LEGEND = {
-                "gray": "The color palette is grayscale, where bright white tones represent the closest proximity and dark black tones represent the furthest depth.",
-                "plasma": "The color palette is plasma, where bright yellow tones represent the closest proximity and dark blue/purple tones represent the furthest depth.",
-                "turbo": "The color palette is turbo, where red tones represent the closest proximity and dark blue tones represent the furthest depth.",
+                "plasma": "Depth estimation, rendered with the plasma colormap: bright yellow highlights are the closest surfaces and darker purple tones are the furthest.",
+                "turbo": "Depth estimation, rendered with the turbo colormap: red is the closest, green-yellow is mid range, and blue is the furthest.",
+                "gray": "Depth estimation, rendered in grayscale: bright white tones are the closest surfaces and dark black tones are the furthest.",
             }
             if cmap in LEGEND:
                 results["description"] = LEGEND[cmap]
@@ -747,7 +753,22 @@ def local_model_inference(model_id, data, task):
             results["generated image"] = f"/images/{name}.jpg"
 
         if det_encoding in ("image_and_text", "text_only"):
-            if config.get("det_text_pixel", False):
+            if config.get("det_text_canon", False):
+                lines = [
+                    "Prediction in the format of xyxy (one bounding box per line).",
+                    'Schema: {"label":"class_name","bbox":[x1,y1,x2,y2]}.',
+                    "Coordinates: (x1,y1) = top-left, (x2,y2) = bottom-right, in image pixel coordinates.",
+                ]
+                for item in predicted:
+                    b = item["box"]
+                    lines.append(json.dumps(
+                        {"label": item.get("label", ""),
+                         "bbox": [round(float(b["xmin"]), 1), round(float(b["ymin"]), 1),
+                                  round(float(b["xmax"]), 1), round(float(b["ymax"]), 1)]},
+                        separators=(",", ":")))
+                results["description"] = "\n".join(lines)
+                results.pop("predicted", None)
+            elif config.get("det_text_pixel", False):
                 objs = [
                     {"label": item["label"],
                      "bbox": [int(item["box"]["xmin"]), int(item["box"]["ymin"]),
