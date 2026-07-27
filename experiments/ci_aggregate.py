@@ -5,7 +5,7 @@ experiments/ci_aggregate.py).
 Three views:
 1. Per-run per-item bootstrap CI (dataset sampling noise), with a
    summary-vs-items consistency guard.
-2. Across-repeat mean +/- t-interval (run-to-run stochasticity).
+2. Across-repeat mean +/- sample SD (run-to-run spread; descriptive only).
 3. Paired per-item comparison between arms (exact-binomial McNemar over
    pooled (item, repeat) pairs on shared scored items).
 
@@ -78,7 +78,7 @@ def load_repeats(arm):
 
 
 def main():
-    print(f"{'arm':<22}{'paper':>6}  repeats (correct/100)          mean [95% t-CI]")
+    print(f"{'arm':<22}{'paper':>6}  repeats (correct/100)          mean +- sd")
     print("-" * 78)
     all_items = {}
     for arm in ARMS:
@@ -91,7 +91,7 @@ def main():
         runs = "/".join(str(c) for _, _, c, _, _ in reps)
         fails = sum(fl for *_, fl in reps)
         print(f"{arm:<22}{PAPER[arm]:>6}  {runs:<28}  "
-              f"{m * 100:.2f} [{lo * 100:.2f}, {hi * 100:.2f}]  (api_fail tot {fails})")
+              f"{m * 100:.2f} +- {(hi - m) * 100:.2f}  (api_fail tot {fails})")
         for tag, per_item, c, n, _ in reps:
             if per_item:
                 blo, bhi = bootstrap_ci(
