@@ -104,11 +104,33 @@ Score: `score_table4.py --dir ...`. Aggregate:
 `experiments/ci_aggregate.py` (per-run bootstrap CI + across-repeat t-CI +
 pooled exact McNemar between arms; summary-vs-items consistency guard).
 
-### 2.3 Status
+### 2.3 Status & operations history
 
-Fleet launched 05:05–05:14; 12 runs (4 lanes). Progress and final numbers
-tracked in `judge-exp-hugginggpt.md` §3. Backfill pass + aggregation after
-all repeats land.
+- 2026-07-26 05:05–13:00 — 3-repeat campaign (4 faithful arms + de-confound
+  + encoding sweeps) against the then-shared 72B at :8001; replace_slot
+  backslash fix (c8b7be3) eliminated the deterministic Depth failures;
+  soft-fail backfill trap documented (run_blink is_failed treats "can't
+  make it" as retryable).
+- ~14:30 — operator: 5 repeats for all arms; SpAgent campaign tore down
+  mid-fseg leaving :8001 dead → launched OWN vLLMs (TP2, 32768 ctx,
+  matching the original context length): :8001 (GPUs 0-1) and :8003;
+  a third instance failed on a CUDA_VISIBLE_DEVICES ordering collision
+  (documented: use CUDA_DEVICE_ORDER=PCI_BUS_ID). All outage-window
+  network-error items were backfilled after recovery.
+- 4 tool servers: :9005 (pre-encoding code, det/stock arms), :9006/:9007/
+  :9008 (encoding formatters; GPUs 6/7/2).
+- Load-balancing: sandboxes route per-run via their own
+  configs/config.default.yaml base_url; runs are restart-cheap (resume
+  skips completed items). The sibling agent's :8005 72B accepted
+  connections but black-holed inference (60s+ hangs, 0 engine requests) —
+  48 runs evacuated back to :8001/:8003.
+- External benchmarks (operator-picked): TallyQA-complex (instance
+  counting; MCQ-ified, seed 0) and DA-2K point-pairs (balanced 50/50 key
+  via marker-assignment randomization; coords are [y,x]).
+- Final protocol: 5 repeats/arm, hard failures backfilled to 0 before an
+  arm is marked final (exception: refseg_mask_only r2/r3 pre-backfill
+  copies carry 2 residual fails each if their reruns did not complete).
+
 
 ---
 
