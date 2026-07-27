@@ -135,6 +135,18 @@ case $ARM in
     CFGS+=(--config configs/det_text_only.yaml --config configs/det_text_pixel.yaml
            --config configs/isolate_det.yaml --config configs/det_probe_fix.yaml)
     ;;
+  # Stage-I-aligned canonical detection text (pixel xyxy, 1dp, one JSON per
+   # line, verbatim preamble) — 100-item set for direct comparison to the
+   # published/board arms, and full-500 variant
+  canon_text_r|canon_text)
+    CFGS+=(--config configs/det_text_only.yaml --config configs/det_text_canon.yaml
+           --config configs/isolate_det.yaml --config configs/det_probe_fix.yaml)
+    ;;
+  canon_text500)
+    INPUT=cvbench_full500.jsonl
+    CFGS+=(--config configs/det_text_only.yaml --config configs/det_text_canon.yaml
+           --config configs/isolate_det.yaml --config configs/det_probe_fix.yaml)
+    ;;
   # P2: instance-seg encodings on COCO-Count-Crowded 300 (forced plan, isolated)
   cc_stock)
     INPUT=cococount300.jsonl

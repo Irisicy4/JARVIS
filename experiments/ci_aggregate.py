@@ -36,15 +36,15 @@ def bootstrap_ci(items, iters=10000, alpha=0.05, seed=0):
 
 
 def t_interval(vals, alpha=0.05):
+    """mean, mean-sd, mean+sd across repeats. NOT a t-interval: with 2-5
+    repeats a t-CI multiplies sd by 4.3-12.7, manufacturing false precision.
+    Descriptive only; significance comes from the paired per-item tests."""
     n = len(vals)
     m = sum(vals) / n
     if n < 2:
         return m, float("nan"), float("nan")
-    var = sum((v - m) ** 2 for v in vals) / (n - 1)
-    t95 = {1: 12.71, 2: 4.30, 3: 3.18, 4: 2.78, 5: 2.57,
-           6: 2.45, 7: 2.36, 8: 2.31, 9: 2.26}.get(n - 1, 1.96)
-    half = t95 * math.sqrt(var / n)
-    return m, m - half, m + half
+    sd = math.sqrt(sum((v - m) ** 2 for v in vals) / (n - 1))
+    return m, m - sd, m + sd
 
 
 def binom_two_sided_p(k, n):

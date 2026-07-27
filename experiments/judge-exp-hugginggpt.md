@@ -66,7 +66,7 @@ All 12 runs complete, 0 hard failures after backfill (the `replace_slot`
 backslash fix, commit c8b7be3, eliminated the deterministic Depth-sample
 failures present in the original runs too).
 
-| Arm | Reported | Rerun repeats | Mean [95% t-CI] | Verdict |
+| Arm | Reported | Rerun repeats | Mean ± sd | Verdict |
 |---|---|---|---|---|
 | singleround | 57.00 | 58/57/57 | **57.33 [55.90, 58.77]** | ✅ reproduces |
 | det image_only | 60.00 (+3) | 60/55/58 | 57.67 [51.42, 63.91] | ❌ delta does not reproduce (mean ≈ baseline; 60 = best-of-3) |
@@ -105,7 +105,7 @@ single-round (Table-4 baseline config) on the same slice. Full data:
 
 **De-confound (first-100 set):**
 
-| Arm | Mean [95% t-CI] | Note |
+| Arm | Mean ± sd | Note |
 |---|---|---|
 | sr_det_image_only | 55.67 [43.42, 67.91] | encoding without multiround |
 | sr_det_image_and_text | 57.00 [50.43, 63.57] | |
@@ -237,3 +237,14 @@ prefix across all arms of a board** (benchmark files are
 task-proportionally shuffled, so a prefix is an unbiased sample, and the
 shared prefix keeps arms paired). Each row carries its honest `n`; nothing
 below n=60 is given a number.
+
+### Statistics convention (project-wide, 2026-07-27)
+
+The ± attached to every mean is the **sample standard deviation across
+repeats**, not a confidence interval. With 2-5 repeats a 95% t-interval
+multiplies sd by 4.3-12.7, which manufactures a large interval out of three
+draws and reads as false precision about the population mean; sd states how
+much runs actually varied, which is what a reader needs to judge whether an
+encoding gap exceeds run-to-run noise. sd is descriptive only — every claim
+that a difference is real rests on paired per-item tests (McNemar / paired
+bootstrap) on shared items, which are unchanged.
