@@ -451,6 +451,42 @@ def response_results(input, results, api_key, api_type, api_endpoint):
     })
     messages = json.loads(demos_or_presteps)
     messages.insert(0, {"role": "system", "content": response_results_tprompt})
+    # Optional: attach tool-generated images (and the source image) as real
+    # pixels to the answer call. Stock HuggingGPT sends this stage as pure
+    # text, so image encodings are invisible to the controller in round 1.
+    if config.get("attach_images_to_response"):
+        parts = [{"type": "text", "text": prompt}]
+        seen_src = set()
+        for res in results:
+            src = res.get("task", {}).get("args", {}).get("image", "")
+            if src and "/images/" not in src and src not in seen_src:
+                seen_src.add(src)
+                url = _encode_image_to_data_url(src)
+                if url:
+                    parts.append({"type": "text", "text": "[source image]"})
+                    parts.append({"type": "image_url", "image_url": {"url": url}})
+        for res in results:
+            inf = res.get("inference result", {})
+            if not isinstance(inf, dict):
+                continue
+            for key in ("generated image", "bbox_separate_image"):
+                if key in inf:
+                    url = _encode_image_to_data_url(inf[key])
+                    if url:
+                        parts.append({"type": "text",
+                                      "text": f"[tool output: {key}]"})
+                        parts.append({"type": "image_url",
+                                      "image_url": {"url": url}})
+        if len(parts) > 1:
+            messages.append({"role": "user", "content": parts})
+            n_img = sum(1 for p in parts if p.get("type") == "image_url")
+            logger.info(f"[response_results] attached {n_img} image(s) as pixels")
+            data = {
+                "model": LLM, "messages": messages, "temperature": 0,
+                "api_key": api_key, "api_type": api_type,
+                "api_endpoint": api_endpoint,
+            }
+            return send_request(data)
     messages.append({"role": "user", "content": prompt})
     logger.debug(messages)
     data = {
@@ -637,10 +673,21 @@ def local_model_inference(model_id, data, task):
         # encoding sweep: colormap applied server-side per request
         if config.get("depth_colormap"):
             payload["colormap"] = config["depth_colormap"]
+        if config.get("depth_preserve_markers"):
+            payload["preserve_markers"] = True
         response = requests.post(task_url, json=payload)
         results = response.json()
         if "path" in results:
             results["generated image"] = results.pop("path")
+        cmap = config.get("depth_colormap")
+        if cmap:
+            LEGEND = {
+                "gray": "The color palette is grayscale, where bright white tones represent the closest proximity and dark black tones represent the furthest depth.",
+                "plasma": "The color palette is plasma, where bright yellow tones represent the closest proximity and dark blue/purple tones represent the furthest depth.",
+                "turbo": "The color palette is turbo, where red tones represent the closest proximity and dark blue tones represent the furthest depth.",
+            }
+            if cmap in LEGEND:
+                results["description"] = LEGEND[cmap]
         return results
     if task == "image-segmentation":
         img_url = data["image"]
@@ -700,7 +747,19 @@ def local_model_inference(model_id, data, task):
             results["generated image"] = f"/images/{name}.jpg"
 
         if det_encoding in ("image_and_text", "text_only"):
-            if config.get("det_text_clean", False):
+            if config.get("det_text_pixel", False):
+                objs = [
+                    {"label": item["label"],
+                     "bbox": [int(item["box"]["xmin"]), int(item["box"]["ymin"]),
+                              int(item["box"]["xmax"]), int(item["box"]["ymax"])]}
+                    for item in predicted
+                ]
+                results["description"] = (
+                    f"Detected objects (pixel xyxy bboxes; image is {W}x{H} "
+                    "pixels, width x height): "
+                    + json.dumps(objs, ensure_ascii=False))
+                results.pop("predicted", None)
+            elif config.get("det_text_clean", False):
                 # cleaned text encoding: explicit convention, top-k by score,
                 # 2-decimal coords, confidence included, no raw pixel dump
                 top = sorted(predicted, key=lambda x: -x.get("score", 0))[:5]

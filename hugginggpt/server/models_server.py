@@ -362,6 +362,34 @@ def status(model_id):
         print(f"[ check {model_id} ] failed")
         return jsonify({"loaded": False})
 
+def _restamp_markers(src, depth_img):
+    """Copy saturated red / blue circular markers from `src` onto
+    `depth_img` (same size), so point-pair references survive depth
+    estimation. Returns a new RGB image."""
+    from PIL import ImageDraw
+    a = np.asarray(src).astype("int16")
+    if depth_img.size != src.size:
+        depth_img = depth_img.resize(src.size)
+    out = depth_img.convert("RGB").copy()
+    d = ImageDraw.Draw(out)
+    r_, g_, b_ = a[..., 0], a[..., 1], a[..., 2]
+    masks = {
+        "A": ((r_ > 180) & (g_ < 90) & (b_ < 90), (255, 40, 40)),
+        "B": ((b_ > 180) & (r_ < 110) & (g_ < 140), (40, 90, 255)),
+    }
+    for lbl, (m, color) in masks.items():
+        ys, xs = np.nonzero(m)
+        if len(xs) < 8:
+            continue
+        cx, cy = int(xs.mean()), int(ys.mean())
+        rad = max(6, int((len(xs) / 3.14159) ** 0.5))
+        d.ellipse((cx - rad, cy - rad, cx + rad, cy + rad), fill=color,
+                  outline=(255, 255, 255), width=max(2, rad // 3))
+        d.text((cx + rad + 3, cy - rad), lbl, fill=color,
+               stroke_width=2, stroke_fill=(255, 255, 255))
+    return out
+
+
 SEG_PALETTE = [
     (230, 25, 75), (60, 180, 75), (255, 225, 25), (0, 130, 200),
     (245, 130, 48), (145, 30, 180), (70, 240, 240), (240, 50, 230),
@@ -392,9 +420,20 @@ def render_seg_encoding(image, segments, enc):
             approx = cv2.approxPolyDP(c, 0.01 * cv2.arcLength(c, True), True)
             poly = [[round(float(x) / W, 3), round(float(y) / H, 3)]
                     for [[x, y]] in approx.tolist()]
-            objs.append({"label": lbl, "polygon": poly})
-        return {"description": "Segmented objects (normalized xy polygons): "
-                               + json.dumps(objs, ensure_ascii=False)}
+            area_pct = round(float(arr.sum()) / float(W * H) * 100, 1)
+            objs.append({"label": lbl, "polygon": poly, "area_pct": area_pct})
+        from collections import Counter
+        counts = Counter(o["label"] for o in objs)
+        lines = [f'Segmentation of "{" . ".join(sorted(counts))}": '
+                 f'{len(objs)} instance(s). Mask outlines as normalized (x,y) '
+                 'polygons (origin top-left, values 0-1):']
+        for i, o in enumerate(objs, 1):
+            lines.append(f'  #{i} {o["label"]} (area {o["area_pct"]}%): '
+                         f'polygons=[{json.dumps(o["polygon"])}]')
+        lines.append("Per-class instance counts: "
+                     + "; ".join(f"{k}: {v} instance(s)" for k, v in
+                                 sorted(counts.items(), key=lambda x: -x[1])) + ".")
+        return {"description": "\n".join(lines)}
 
     # class-color for overlay_base/opacity100/contour_only/mask_only,
     # instance-color for color_by_instance
@@ -582,6 +621,12 @@ def models(model_id):
                 arr = arr / max(float(arr.max()), 1e-6)
                 rgba = cm.get_cmap(cmap_name)(arr)
                 image = Image.fromarray((rgba[..., :3] * 255).astype("uint8"))
+            if req.get("preserve_markers"):
+                # Depth estimation erases the A/B reference markers drawn on
+                # the source image, making point-pair probes unanswerable
+                # from the tool output. Re-stamp saturated red/blue markers
+                # detected in the source onto the depth map.
+                image = _restamp_markers(load_image(req["img_url"]).convert("RGB"), image)
             name = str(uuid.uuid4())
             image.save(f"public/images/{name}.jpg")
             result = {"path": f"/images/{name}.jpg"}

@@ -1,0 +1,3 @@
+depth_preserve_markers: true
+attach_images_to_response: true
+forced_task: depth-estimation

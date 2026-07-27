@@ -170,3 +170,70 @@ sr_det_text_only.
   this side's port; nothing hardcoded touched.
 - No API keys on disk; git identity IcyWang <irisicy@outlook.com>; no
   co-author lines.
+
+## 4c. Deadline campaign (2026-07-27) — external benchmarks, honest audit
+
+Cross-framework request from the SpAgent side: full-size benchmarks, the
+pixel-vs-normalized detection text question, and DA-2K + COCO-Count-Crowded
+as second external benchmarks for the depth and instance-seg rule families.
+
+### Coordinate conventions (asked, answered)
+
+| Arm | `description` channel | raw `predicted` (pixel) dump | W×H stated |
+|---|---|---|---|
+| `det_text_only` (published) | normalized [0,1] xyxy, 4 dp | **present** (unconditional in every arm) | no |
+| `det_text_clean` | normalized [0,1], 2 dp, top-5, +conf | removed | yes |
+| `det_text_pixel` (new) | **integer pixel xyxy**, image size stated in-string | removed | yes |
+
+The published "text-only xyxy" arm is therefore a *mixed* normalized+pixel
+condition, unlabeled. Corroborating the SpAgent finding that only the pixel
+realization carries information: the pure-normalized arm is the **worst**
+det arm in both configurations (multiround 55.4 vs 57.4 mixed / 57.6
+baseline; single-round 57.0 vs 58.6 / 57.6).
+
+### Why the DA-2K depth arms first came out degenerate (all exactly 50.00)
+
+Three compounding failures, each verified in the run logs:
+
+1. **The controller never receives pixels.** `response_results` is
+   text-only by construction, so the depth map reached it as a *path
+   string* (`data:image` in 16 of 117 samples, reflection rounds only).
+2. **The chained reader was unregistered.** Single-tool isolation made VQA
+   unavailable, but the planner kept scheduling it — 517
+   `not found in available tasks` errors in one run — so nothing ever read
+   the map.
+3. **Depth estimation erases the markers.** DPT output has no red-A /
+   blue-B circles, so the point references were unrecoverable even when
+   attached.
+
+Fixes (all config-gated, published-arm replications unchanged):
+`depth_preserve_markers` re-stamps the markers onto the colormapped map;
+`attach_images_to_response` attaches source + tool images as real pixels;
+`forced_task` replaces the disobedient planner with a fixed single-tool
+plan; per-colormap legends are injected in text.
+
+### Infrastructure failure modes found (worth copying)
+
+- **`models_server` deadlocks per model.** Its busy-wait `using` flag is
+  never released if a client is killed mid-inference, so every later call
+  for that model on that process blocks forever. Two of four tool servers
+  wedged this way; symptom is a run whose last log line is `chosen model`
+  and then silence. Probe with a direct `/models/<id>` POST before trusting
+  any arm.
+- **HuggingGPT aborts tool waits at 80 s** (`User has waited too long,
+  Loop break`) and then answers *without* the tool result — a silent
+  degeneration to no-tool that the driver reports as success.
+- **Dead-endpoint poisoning.** Two depth arms ran 18/18 items against a
+  vLLM that had exited; every item was a hard failure but the run looked
+  healthy. Results were wiped and the arms restarted, not reported.
+- Per-model locks are *per process*: seg / depth / VQA proceed in parallel
+  on one tool server, so co-locating different tools is safe, while
+  co-locating the same tool serializes.
+
+### Deadline scoring protocol
+
+Full-size runs that could not finish are reported on the **shared item
+prefix across all arms of a board** (benchmark files are
+task-proportionally shuffled, so a prefix is an unbiased sample, and the
+shared prefix keeps arms paired). Each row carries its honest `n`; nothing
+below n=60 is given a number.

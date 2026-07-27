@@ -93,6 +93,58 @@ case $ARM in
           --config configs/isolate_depth.yaml --config configs/depth_${ARM#da300_}.yaml
           --config configs/multiround.yaml)
     ;;
+  # DA-2K 300 FIXED probe: markers re-stamped on the depth map + tool and
+  # source images attached as real pixels to the answer call (single-round)
+  da300f_stock)
+    INPUT=da2k_300balanced.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/depth_probe_fix.yaml)
+    ;;
+  da300f_gray|da300f_plasma|da300f_turbo)
+    INPUT=da2k_300balanced.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_depth.yaml --config configs/depth_${ARM#da300f_}.yaml
+          --config configs/depth_probe_fix.yaml)
+    ;;
+  # ===== DEADLINE PRIORITY ARMS (full-size benchmarks) =====
+  # P1: canonical single-round detection arms at FULL CV-Bench 500
+  f500_baseline)
+    INPUT=cvbench_full500.jsonl
+    ;;
+  f500_image_only|f500_image_and_text|f500_text_only)
+    INPUT=cvbench_full500.jsonl
+    CFGS+=(--config configs/det_${ARM#f500_}.yaml)
+    ;;
+  f500_text_pixel)
+    INPUT=cvbench_full500.jsonl
+    CFGS+=(--config configs/det_text_only.yaml --config configs/det_text_pixel.yaml)
+    ;;
+  # P1b: single-tool forced-plan detection at full 500 (one tool call per
+  # item, pixels attached) — deadline-feasible clean encoding comparison
+  f500s_baseline)
+    INPUT=cvbench_full500.jsonl
+    CFGS+=(--config configs/det_probe_fix.yaml)
+    ;;
+  f500s_image_only|f500s_image_and_text|f500s_text_only)
+    INPUT=cvbench_full500.jsonl
+    CFGS+=(--config configs/det_${ARM#f500s_}.yaml --config configs/isolate_det.yaml
+           --config configs/det_probe_fix.yaml)
+    ;;
+  f500s_text_pixel)
+    INPUT=cvbench_full500.jsonl
+    CFGS+=(--config configs/det_text_only.yaml --config configs/det_text_pixel.yaml
+           --config configs/isolate_det.yaml --config configs/det_probe_fix.yaml)
+    ;;
+  # P2: instance-seg encodings on COCO-Count-Crowded 300 (forced plan, isolated)
+  cc_stock)
+    INPUT=cococount300.jsonl
+    ;;
+  cc_overlay_base|cc_color_by_instance|cc_polygon_text|cc_mask_only)
+    INPUT=cococount300.jsonl
+    CFGS=(--config configs/config.default.yaml --config configs/rerun_local2.yaml
+          --config configs/isolate_seg.yaml --config configs/forced_seg.yaml
+          --config configs/seg_${ARM#cc_}.yaml --config configs/depth_probe_fix.yaml)
+    ;;
   # TallyQA-complex counting (forced-plan seg)
   tqa_stock)
     INPUT=tallyqa_complex100.jsonl
